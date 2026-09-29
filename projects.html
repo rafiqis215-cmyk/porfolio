@@ -1,0 +1,2133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Projects | Ismail Rafiqi</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #050505;
+        --panel: #0d0d0d;
+        --panel-2: #121212;
+        --text: #f5f5f5;
+        --muted: #a1a1aa;
+        --line: rgba(255, 255, 255, 0.08);
+        --primary: #9b6cff;
+        --primary-light: #c5aaff;
+        --accent: #6de7d2;
+        --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(
+            circle at 15% 15%,
+            rgba(155, 108, 255, 0.09),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 45%,
+            rgba(109, 231, 210, 0.05),
+            transparent 28%
+          ),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.22;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 70px 70px;
+        mask-image: linear-gradient(to bottom, black, transparent 90%);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* =========================================================
+         NAVBAR
+      ========================================================= */
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(5, 5, 5, 0.72);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-inner {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.08em;
+        display: inline-flex;
+        align-items: center;
+        transition:
+          transform 0.35s ease,
+          text-shadow 0.35s ease;
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      .logo:hover {
+        color: #fff;
+        transform: translateY(-2px) rotate(-3deg);
+        text-shadow:
+          0 0 15px rgba(155, 108, 255, 0.6),
+          0 0 35px rgba(155, 108, 255, 0.25);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-links a {
+        position: relative;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition:
+          color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0;
+        height: 2px;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .nav-links a.active {
+        color: #fff;
+      }
+
+      /* =========================================================
+         MOBILE TOGGLER
+      ========================================================= */
+
+      .navbar-toggler {
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        background: linear-gradient(
+          145deg,
+          rgba(155, 108, 255, 0.12),
+          rgba(255, 255, 255, 0.025)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          border-color 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .navbar-toggler:hover {
+        border-color: rgba(155, 108, 255, 0.45);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(155, 108, 255, 0.15);
+      }
+
+      .navbar-toggler-icon {
+        width: 21px;
+        height: 2px;
+        position: relative;
+        background: var(--primary);
+        transition: background 0.3s ease;
+      }
+
+      .navbar-toggler-icon::before,
+      .navbar-toggler-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 21px;
+        height: 2px;
+        background: var(--primary);
+        transition:
+          transform 0.35s ease,
+          top 0.35s ease;
+      }
+
+      .navbar-toggler-icon::before {
+        top: -7px;
+      }
+
+      .navbar-toggler-icon::after {
+        top: 7px;
+      }
+
+      .navbar-toggler.is-open .navbar-toggler-icon {
+        background: transparent;
+      }
+
+      .navbar-toggler.is-open .navbar-toggler-icon::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+
+      .navbar-toggler.is-open .navbar-toggler-icon::after {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
+      /* =========================================================
+         MOBILE MENU
+      ========================================================= */
+
+      .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 16px;
+        right: 16px;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 22px;
+        background: linear-gradient(
+          145deg,
+          rgba(17, 17, 17, 0.98),
+          rgba(7, 7, 7, 0.98)
+        );
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, 0.65),
+          inset 0 1px rgba(255, 255, 255, 0.04);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-15px) scale(0.98);
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease,
+          transform 0.35s ease;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+      }
+
+      .mobile-menu::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 25px;
+        right: 25px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          transparent
+        );
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 14px;
+        margin: 5px 0;
+        border-radius: 14px;
+        color: var(--muted);
+        border: 1px solid transparent;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          color 0.3s ease,
+          background 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      .mobile-menu.open .mobile-nav-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(1) {
+        transition-delay: 70ms;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(2) {
+        transition-delay: 120ms;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(3) {
+        transition-delay: 170ms;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(4) {
+        transition-delay: 220ms;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(5) {
+        transition-delay: 270ms;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(6) {
+        transition-delay: 320ms;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(7) {
+        transition-delay: 370ms;
+      }
+
+      .mobile-nav-link:hover {
+        color: #fff;
+        background: linear-gradient(
+          90deg,
+          rgba(155, 108, 255, 0.11),
+          rgba(109, 231, 210, 0.04)
+        );
+        border-color: rgba(155, 108, 255, 0.15);
+        transform: translateX(5px) !important;
+      }
+
+      .mobile-nav-link.active {
+        color: #fff;
+        background: rgba(155, 108, 255, 0.09);
+        border-color: rgba(155, 108, 255, 0.18);
+      }
+
+      .mobile-nav-number {
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        margin-right: 12px;
+      }
+
+      .mobile-nav-arrow {
+        color: rgba(255, 255, 255, 0.35);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-nav-link:hover .mobile-nav-arrow {
+        transform: translateX(4px);
+        color: var(--primary);
+      }
+
+      .mobile-status {
+        margin-top: 14px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow:
+          0 0 0 4px rgba(109, 231, 210, 0.08),
+          0 0 15px rgba(109, 231, 210, 0.5);
+      }
+
+      /* =========================================================
+         PAGE
+      ========================================================= */
+
+      .page-wrap {
+        padding: 100px 0 130px;
+        position: relative;
+      }
+
+      .page-wrap::after {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        top: 170px;
+        right: -220px;
+        border-radius: 50%;
+        background: rgba(155, 108, 255, 0.07);
+        filter: blur(100px);
+        pointer-events: none;
+      }
+
+      .hero-top {
+        animation: fadeUp 0.8s ease both;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 800px;
+        font-size: clamp(2.8rem, 6vw, 5.3rem);
+        line-height: 0.98;
+        letter-spacing: -0.08em;
+        font-weight: 800;
+      }
+
+      h1 span {
+        color: var(--primary);
+        text-shadow: 0 0 35px rgba(155, 108, 255, 0.18);
+      }
+
+      .intro {
+        max-width: 650px;
+        margin-top: 24px;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      /* =========================================================
+         INFINITE PROJECT AREA
+      ========================================================= */
+
+      .projects-section {
+        position: relative;
+        margin-top: 65px;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        width: 100vw;
+        overflow: hidden;
+      }
+
+      .projects-section::before,
+      .projects-section::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 180px;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .projects-section::before {
+        left: 0;
+        background: linear-gradient(90deg, var(--bg), rgba(5, 5, 5, 0));
+      }
+
+      .projects-section::after {
+        right: 0;
+        background: linear-gradient(270deg, var(--bg), rgba(5, 5, 5, 0));
+      }
+
+      .projects-track {
+        display: flex;
+        width: max-content;
+        gap: 28px;
+        padding: 20px 0 45px;
+        animation: projectsLoop 32s linear infinite;
+      }
+
+      .projects-section:hover .projects-track {
+        animation-play-state: paused;
+      }
+
+      /* =========================================================
+         PROJECT CARD
+      ========================================================= */
+
+      .project-card {
+        position: relative;
+        overflow: hidden;
+        width: 530px;
+        min-width: 530px;
+        min-height: 560px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.055),
+          rgba(255, 255, 255, 0.012)
+        );
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        transform: translateY(0) scale(1);
+        transition:
+          transform 0.5s cubic-bezier(0.2, 0.9, 0.2, 1),
+          border-color 0.4s ease,
+          box-shadow 0.5s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-15px) scale(1.015);
+        border-color: rgba(155, 108, 255, 0.4);
+        box-shadow:
+          0 35px 90px rgba(0, 0, 0, 0.55),
+          0 0 45px rgba(155, 108, 255, 0.1);
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 15% 15%,
+          rgba(155, 108, 255, 0.14),
+          transparent 30%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      /* =========================================================
+         PROJECT IMAGE
+      ========================================================= */
+
+      .project-image {
+        position: relative;
+        height: 285px;
+        overflow: hidden;
+        background: #0b0b0b;
+      }
+
+      .project-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 45%,
+          rgba(5, 5, 5, 0.8)
+        );
+        pointer-events: none;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition:
+          transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1),
+          filter 0.5s ease;
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.09);
+        filter: brightness(1.07) saturate(1.08);
+      }
+
+      .project-number {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        z-index: 3;
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: rgba(5, 5, 5, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+      }
+
+      .project-category {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 3;
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: rgba(155, 108, 255, 0.14);
+        border: 1px solid rgba(155, 108, 255, 0.3);
+        color: #d8c8ff;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* =========================================================
+         PROJECT BODY
+      ========================================================= */
+
+      .project-body {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 27px;
+      }
+
+      .project-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .project-body h3 {
+        margin: 0;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+
+      .project-arrow {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #fff;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.035);
+        transition:
+          transform 0.4s ease,
+          background 0.4s ease,
+          border-color 0.4s ease;
+      }
+
+      .project-card:hover .project-arrow {
+        transform: translate(4px, -4px) rotate(-8deg);
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .project-body p {
+        margin: 15px 0 0;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 0.9rem;
+      }
+
+      /* =========================================================
+         TAGS
+      ========================================================= */
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .tag {
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(155, 108, 255, 0.08);
+        border: 1px solid rgba(155, 108, 255, 0.18);
+        color: #d9ccff;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* =========================================================
+         BUTTONS
+      ========================================================= */
+
+      .project-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 25px;
+      }
+
+      .project-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 15px;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .project-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .btn-primary-project {
+        color: #fff;
+        background: linear-gradient(135deg, #9b6cff, #7650d8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 25px rgba(155, 108, 255, 0.18);
+      }
+
+      .btn-primary-project:hover {
+        color: #fff;
+        box-shadow: 0 15px 35px rgba(155, 108, 255, 0.3);
+      }
+
+      .btn-outline-project {
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid var(--line);
+      }
+
+      .btn-outline-project:hover {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      /* =========================================================
+         LOOP ANIMATION
+      ========================================================= */
+
+      @keyframes projectsLoop {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(calc(-50% - 14px));
+        }
+      }
+
+      /* =========================================================
+         LOOP INDICATOR
+      ========================================================= */
+
+      .loop-info {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #777780;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .loop-info i {
+        color: var(--primary);
+        animation: rotateLoop 2s linear infinite;
+      }
+
+      @keyframes rotateLoop {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* =========================================================
+         BOTTOM CTA
+      ========================================================= */
+
+      .projects-footer {
+        margin-top: 85px;
+        padding: 45px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background: linear-gradient(
+          120deg,
+          rgba(155, 108, 255, 0.09),
+          rgba(109, 231, 210, 0.035),
+          rgba(255, 255, 255, 0.02)
+        );
+        text-align: center;
+      }
+
+      .projects-footer::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        left: -100px;
+        bottom: -150px;
+        border-radius: 50%;
+        background: rgba(155, 108, 255, 0.14);
+        filter: blur(70px);
+      }
+
+      .projects-footer h2 {
+        position: relative;
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        letter-spacing: -0.06em;
+      }
+
+      .projects-footer h2 span {
+        color: var(--primary);
+      }
+
+      .projects-footer p {
+        position: relative;
+        max-width: 550px;
+        margin: 15px auto 25px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .footer-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 20px;
+        border-radius: 12px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--primary), #704ad1);
+        font-size: 0.85rem;
+        font-weight: 700;
+        box-shadow: 0 15px 35px rgba(155, 108, 255, 0.2);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .footer-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 20px 45px rgba(155, 108, 255, 0.32);
+      }
+
+      /* =========================================================
+         LOADER
+      ========================================================= */
+
+      .page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(5, 5, 5, 0.9);
+        backdrop-filter: blur(14px);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease;
+      }
+
+      .page-loader.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .loader-ring {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-top-color: var(--primary);
+        border-right-color: var(--accent);
+        box-shadow: 0 0 30px rgba(155, 108, 255, 0.25);
+        animation: loaderSpin 0.85s linear infinite;
+      }
+
+      .loader-text {
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      @keyframes loaderSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* =========================================================
+         GENERAL ANIMATION
+      ========================================================= */
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =========================================================
+         TABLET
+      ========================================================= */
+
+      @media (max-width: 991px) {
+        .nav-inner {
+          min-height: 72px;
+        }
+
+        .project-card {
+          width: 470px;
+          min-width: 470px;
+        }
+      }
+
+      /* =========================================================
+         MOBILE
+      ========================================================= */
+
+      @media (max-width: 767px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        .page-wrap {
+          padding: 75px 0 90px;
+        }
+
+        h1 {
+          font-size: clamp(2.7rem, 13vw, 4rem);
+        }
+
+        .intro {
+          font-size: 0.9rem;
+        }
+
+        .projects-section {
+          margin-top: 40px;
+        }
+
+        .projects-section::before,
+        .projects-section::after {
+          width: 70px;
+        }
+
+        .projects-track {
+          gap: 18px;
+          animation-duration: 28s;
+          padding: 15px 0 35px;
+        }
+
+        .project-card {
+          width: 350px;
+          min-width: 350px;
+          min-height: 0;
+          border-radius: 22px;
+        }
+
+        .project-image {
+          height: 225px;
+        }
+
+        .project-body {
+          padding: 22px;
+        }
+
+        .project-body h3 {
+          font-size: 1.25rem;
+        }
+
+        .project-actions {
+          flex-wrap: wrap;
+        }
+
+        .project-btn {
+          flex: 1;
+        }
+
+        .projects-footer {
+          margin-top: 55px;
+          padding: 32px 20px;
+        }
+
+        .mobile-menu {
+          left: 10px;
+          right: 10px;
+        }
+      }
+
+      /* =========================================================
+         SMALL MOBILE
+      ========================================================= */
+
+      @media (max-width: 420px) {
+        .project-card {
+          width: 315px;
+          min-width: 315px;
+        }
+
+        .project-image {
+          height: 205px;
+        }
+
+        .project-actions {
+          flex-direction: column;
+        }
+
+        .project-btn {
+          width: 100%;
+        }
+
+        .project-title-row {
+          align-items: flex-start;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+
+      /* =========================================================
+         REDUCED MOTION
+      ========================================================= */
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .projects-track {
+          animation: none !important;
+          transform: none !important;
+        }
+      }
+
+      /* =========================================================
+         ENHANCED MOBILE-FIRST RESPONSIVE OVERRIDE
+      ========================================================= */
+
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .nav-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      @media (max-width: 991.98px) {
+        .topbar {
+          position: sticky;
+        }
+
+        .nav-inner {
+          min-height: 68px;
+        }
+
+        .logo {
+          font-size: 1.75rem;
+        }
+
+        .navbar-toggler {
+          flex-shrink: 0;
+          width: 46px;
+          height: 46px;
+          border-radius: 13px;
+        }
+
+        .mobile-menu {
+          left: 12px;
+          right: 12px;
+          max-height: calc(100vh - 84px);
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          padding: 14px;
+        }
+
+        .mobile-nav-link {
+          min-height: 50px;
+          padding: 14px 13px;
+        }
+
+        .page-wrap {
+          padding-top: 72px;
+        }
+
+        .projects-section {
+          margin-left: calc(50% - 50vw);
+          margin-right: calc(50% - 50vw);
+        }
+
+        .projects-section::before,
+        .projects-section::after {
+          width: 90px;
+        }
+
+        .projects-track {
+          gap: 20px;
+        }
+
+        .project-card {
+          width: min(78vw, 470px);
+          min-width: min(78vw, 470px);
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .page-wrap {
+          padding: 64px 0 80px;
+        }
+
+        .eyebrow {
+          font-size: 9px;
+          letter-spacing: 0.2em;
+          margin-bottom: 14px;
+        }
+
+        .eyebrow::before {
+          width: 22px;
+        }
+
+        h1 {
+          max-width: 100%;
+          font-size: clamp(2.55rem, 14vw, 4rem);
+          line-height: 0.96;
+        }
+
+        .intro {
+          max-width: 100%;
+          margin-top: 18px;
+          font-size: 0.88rem;
+          line-height: 1.75;
+        }
+
+        .projects-section {
+          margin-top: 34px;
+        }
+
+        .projects-section::before,
+        .projects-section::after {
+          width: 55px;
+        }
+
+        .projects-track {
+          gap: 16px;
+          padding: 12px 0 30px;
+          animation-duration: 27s;
+        }
+
+        .project-card {
+          width: min(86vw, 360px);
+          min-width: min(86vw, 360px);
+          min-height: 0;
+          border-radius: 20px;
+        }
+
+        .project-image {
+          height: clamp(190px, 58vw, 230px);
+        }
+
+        .project-number,
+        .project-category {
+          top: 14px;
+          padding: 6px 9px;
+        }
+
+        .project-number {
+          left: 14px;
+        }
+
+        .project-category {
+          right: 14px;
+          max-width: 52%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .project-body {
+          padding: 20px;
+        }
+
+        .project-title-row {
+          gap: 10px;
+        }
+
+        .project-body h3 {
+          font-size: 1.15rem;
+          line-height: 1.25;
+        }
+
+        .project-arrow {
+          width: 38px;
+          height: 38px;
+        }
+
+        .project-body p {
+          margin-top: 13px;
+          font-size: 0.84rem;
+          line-height: 1.7;
+        }
+
+        .tags {
+          gap: 6px;
+          margin-top: 17px;
+        }
+
+        .tag {
+          padding: 6px 8px;
+          font-size: 8px;
+        }
+
+        .project-actions {
+          gap: 8px;
+          padding-top: 20px;
+        }
+
+        .project-btn {
+          min-height: 44px;
+          padding: 10px 12px;
+          font-size: 0.74rem;
+        }
+
+        .loop-info {
+          margin-top: 8px;
+          padding: 0 16px;
+          gap: 7px;
+          text-align: center;
+          line-height: 1.6;
+          font-size: 8px;
+        }
+
+        .projects-footer {
+          margin-top: 50px;
+          padding: 30px 18px;
+          border-radius: 20px;
+        }
+
+        .projects-footer h2 {
+          font-size: clamp(1.75rem, 8vw, 2.4rem);
+          line-height: 1.05;
+        }
+
+        .projects-footer p {
+          margin: 13px auto 21px;
+          font-size: 0.86rem;
+          line-height: 1.7;
+        }
+
+        .footer-btn {
+          width: 100%;
+          min-height: 48px;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        .nav-inner {
+          min-height: 64px;
+        }
+
+        .logo {
+          font-size: 1.6rem;
+        }
+
+        .navbar-toggler {
+          width: 44px;
+          height: 44px;
+        }
+
+        .mobile-menu {
+          left: 9px;
+          right: 9px;
+          padding: 12px;
+          border-radius: 19px;
+        }
+
+        .mobile-nav-link {
+          margin: 4px 0;
+          min-height: 48px;
+          padding: 13px 12px;
+        }
+
+        .mobile-status {
+          padding: 13px 10px 5px;
+        }
+
+        .page-wrap {
+          padding-top: 58px;
+        }
+
+        .project-card {
+          width: calc(100vw - 34px);
+          min-width: calc(100vw - 34px);
+        }
+
+        .project-image {
+          height: 205px;
+        }
+
+        .project-body {
+          padding: 18px;
+        }
+
+        .project-actions {
+          flex-direction: column;
+        }
+
+        .project-btn {
+          width: 100%;
+          flex: none;
+        }
+
+        .projects-section::before,
+        .projects-section::after {
+          width: 35px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .container {
+          padding-left: 13px;
+          padding-right: 13px;
+        }
+
+        h1 {
+          font-size: clamp(2.35rem, 14vw, 3.2rem);
+        }
+
+        .intro {
+          font-size: 0.82rem;
+        }
+
+        .project-card {
+          width: calc(100vw - 28px);
+          min-width: calc(100vw - 28px);
+        }
+
+        .project-image {
+          height: 190px;
+        }
+
+        .project-body {
+          padding: 16px;
+        }
+
+        .project-body h3 {
+          font-size: 1.08rem;
+        }
+
+        .project-body p {
+          font-size: 0.8rem;
+        }
+
+        .tag {
+          font-size: 7.5px;
+        }
+      }
+
+      /* Touch devices */
+      @media (hover: none) and (pointer: coarse) {
+        .project-card:hover {
+          transform: none;
+          border-color: var(--line);
+          box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover .project-image img {
+          transform: none;
+          filter: none;
+        }
+
+        .project-card:hover .project-arrow {
+          transform: none;
+          background: rgba(255, 255, 255, 0.035);
+          border-color: var(--line);
+        }
+
+        .project-card:hover::before {
+          opacity: 0;
+        }
+
+        .project-btn:hover {
+          transform: none;
+        }
+      }
+
+      /* Prevent accidental horizontal overflow */
+      @media (max-width: 767.98px) {
+        .projects-track {
+          will-change: transform;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
+
+    <div
+      class="page-loader"
+      aria-live="polite"
+      aria-label="Loading page"
+    >
+      <div class="loader-content">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Loading</div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="topbar">
+      <div class="container nav-inner">
+        <a
+          href="landing page.html"
+          class="logo"
+          aria-label="Ismail Rafiqi Home"
+        >
+          ISR<span>.</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+
+        <nav
+          class="d-none d-lg-flex nav-links"
+          aria-label="Desktop navigation"
+        >
+          <a href="landing page.html">Home</a>
+
+          <a href="about.html">About</a>
+
+          <a href="skills.html">Skills</a>
+
+          <a
+            href="projects.html"
+            class="active"
+            aria-current="page"
+          >
+            Projects
+          </a>
+
+          <!-- ADDED EXPERIENCE -->
+          <a href="experience.html">Experience</a>
+
+          <a href="testimonials.html">Testimonials</a>
+
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <!-- Mobile Button -->
+
+        <button
+          class="navbar-toggler d-lg-none"
+          type="button"
+          aria-controls="mobileNav"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+
+      <nav
+        class="mobile-menu d-lg-none"
+        id="mobileNav"
+        aria-label="Mobile navigation"
+      >
+        <a href="landing page.html" class="mobile-nav-link">
+          <span>
+            <span class="mobile-nav-number">01</span>
+            Home
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <a href="about.html" class="mobile-nav-link">
+          <span>
+            <span class="mobile-nav-number">02</span>
+            About
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <a href="skills.html" class="mobile-nav-link">
+          <span>
+            <span class="mobile-nav-number">03</span>
+            Skills
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <a
+          href="projects.html"
+          class="mobile-nav-link active"
+          aria-current="page"
+        >
+          <span>
+            <span class="mobile-nav-number">04</span>
+            Projects
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <!-- ADDED EXPERIENCE -->
+        <a href="experience.html" class="mobile-nav-link">
+          <span>
+            <span class="mobile-nav-number">05</span>
+            Experience
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <a href="testimonials.html" class="mobile-nav-link">
+          <span>
+            <span class="mobile-nav-number">06</span>
+            Testimonials
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <a href="contact.html" class="mobile-nav-link">
+          <span>
+            <span class="mobile-nav-number">07</span>
+            Contact
+          </span>
+
+          <i class="bi bi-arrow-up-right mobile-nav-arrow"></i>
+        </a>
+
+        <div class="mobile-status">
+          <span class="status-dot"></span>
+          Available for new projects
+        </div>
+      </nav>
+    </header>
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="page-wrap">
+      <div class="container">
+        <!-- Hero -->
+
+        <div class="hero-top">
+          <div class="eyebrow">Portfolio</div>
+
+          <h1>
+            Featured
+            <span>projects.</span>
+          </h1>
+
+          <p class="intro">
+            A selection of digital products and interfaces I have designed and
+            developed with a focus on clean UI, responsive experiences, and
+            modern front-end development.
+          </p>
+        </div>
+      </div>
+
+      <!-- =================================================
+           ONLY 4 PROJECTS
+      ================================================== -->
+
+      <section
+        class="projects-section"
+        aria-label="Featured projects"
+      >
+        <div class="projects-track">
+
+          <!-- Project 01 -->
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-number">01</span>
+
+              <span class="project-category">
+                Web Development
+              </span>
+
+              <img
+                src="images/Screenshot 2026-09-07 134730.png"
+                alt="Jobs Platform"
+              />
+            </div>
+
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3>Resturant platform</h3>
+
+                <a
+                  href="#"
+                  class="project-arrow"
+                  aria-label="View Jobs Platform"
+                >
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+              </div>
+
+              <p>
+                A Modern Resturant platform helps people that connects people as
+                online with the resturant and every kind of foods that they love
+                they can order them from site and there is the menu of all the
+                foods.
+              </p>
+
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Bootstrap</span>
+              </div>
+
+              <div class="project-actions">
+                <a
+                  href="project-1.html"
+                  class="project-btn btn-primary-project"
+                >
+                  <i class="bi bi-box-arrow-up-right"></i>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 02 -->
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-number">02</span>
+
+              <span class="project-category">
+                Web Application
+              </span>
+
+              <img
+                src="images/Screenshot 2026-09-07 135225.png"
+                alt="Certificate Platform"
+              />
+            </div>
+
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3>Website for mobile store</h3>
+
+                <a
+                  href="#"
+                  class="project-arrow"
+                  aria-label="View Certificate Platform"
+                >
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+              </div>
+
+              <p>
+                A professional Mobile Store Website interface designed for
+                organizations, creators, and teams to manage and present digital
+                credentials and Tools.
+              </p>
+
+              <div class="tags">
+                <span class="tag">Html</span>
+                <span class="tag">Bootstrap</span>
+                <span class="tag">Javascript</span>
+                <span class="tag">Responsive</span>
+              </div>
+
+              <div class="project-actions">
+                <a
+                  href="project-2.html"
+                  class="project-btn btn-primary-project"
+                >
+                  <i class="bi bi-box-arrow-up-right"></i>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 03 -->
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-number">03</span>
+
+              <span class="project-category">
+                Hostpital Website
+              </span>
+
+              <img
+                src="images/Screenshot 2026-09-07 135309.png"
+                alt="Real Estate Website"
+              />
+            </div>
+
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3>Hospital Website</h3>
+
+                <a
+                  href="#"
+                  class="project-arrow"
+                  aria-label="View Real Estate Website"
+                >
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+              </div>
+
+              <p>
+                A professional hospital website helps people get more
+                information about the hostpital and more health services and
+                also help them book an apointment Time with the doctor.
+              </p>
+
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Responsive</span>
+              </div>
+
+              <div class="project-actions">
+                <a
+                  href="project-3.html"
+                  class="project-btn btn-primary-project"
+                >
+                  <i class="bi bi-box-arrow-up-right"></i>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 04 -->
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-number">04</span>
+
+              <span class="project-category">
+                UI / UX
+              </span>
+
+              <img
+                src="images/Screenshot 2026-09-07 140138.png"
+                alt="Dashboard UI"
+              />
+            </div>
+
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3>CarWash Platform</h3>
+
+                <a
+                  href="project-4.html"
+                  class="project-arrow"
+                  aria-label="View Dashboard UI"
+                >
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+              </div>
+
+              <p>
+                Premium car washing Website and detailing services designed to
+                keep your vehicle looking its best all helps u all to connect
+                with car wash easily and book a visit for your self.
+              </p>
+
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Javascript</span>
+                <span class="tag">Responsive</span>
+              </div>
+
+              <div class="project-actions">
+                <a
+                  href="project-4.html"
+                  class="project-btn btn-primary-project"
+                >
+                  <i class="bi bi-box-arrow-up-right"></i>
+                  Live Demo
+                </a>
+
+                <a href="#" class="project-btn btn-outline-project">
+                  <i class="bi bi-bezier2"></i>
+                  Figma
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Loop Information -->
+
+      <div class="loop-info">
+        <i class="bi bi-arrow-repeat"></i>
+
+        Projects continuously moving
+
+        <span>•</span>
+
+        Hover to pause
+      </div>
+
+      <div class="container">
+        <!-- =================================================
+             CTA
+        ================================================== -->
+
+        <section class="projects-footer">
+          <h2>
+            Have a project
+            <span>in mind?</span>
+          </h2>
+
+          <p>
+            Let's build something clean, modern, and meaningful together. I'm
+            available for freelance projects and new opportunities.
+          </p>
+
+          <a href="contact.html" class="footer-btn">
+            Let's work together
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </section>
+      </div>
+    </main>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+      const pageLoader = document.querySelector(".page-loader");
+
+      const menuButton = document.querySelector(".navbar-toggler");
+
+      const mobileNav = document.getElementById("mobileNav");
+
+      /* =====================================================
+         CREATE LOOP
+         The HTML contains only 4 project cards.
+         JavaScript creates one duplicate set automatically.
+      ====================================================== */
+
+      const projectsTrack = document.querySelector(".projects-track");
+
+      if (projectsTrack) {
+        const originalProjects = Array.from(
+          projectsTrack.querySelectorAll(".project-card"),
+        );
+
+        originalProjects.forEach((card) => {
+          const clone = card.cloneNode(true);
+
+          clone.setAttribute("aria-hidden", "true");
+
+          clone.querySelectorAll("a").forEach((link) => {
+            link.setAttribute("tabindex", "-1");
+          });
+
+          projectsTrack.appendChild(clone);
+        });
+      }
+
+      /* =====================================================
+         PAGE LOADER
+      ====================================================== */
+
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          if (pageLoader) {
+            pageLoader.classList.remove("visible");
+          }
+        }, 250);
+      });
+
+      /* =====================================================
+         PAGE TRANSITIONS
+      ====================================================== */
+
+      document.querySelectorAll("a[href]").forEach((link) => {
+        const href = link.getAttribute("href");
+
+        if (
+          !href ||
+          href.startsWith("#") ||
+          href.startsWith("mailto:") ||
+          href.startsWith("tel:") ||
+          link.target === "_blank"
+        ) {
+          return;
+        }
+
+        const targetUrl = new URL(href, window.location.href);
+
+        const isSameOrigin =
+          targetUrl.origin === window.location.origin;
+
+        const isHtmlPage = /\.html$/i.test(targetUrl.pathname);
+
+        const differentPage =
+          targetUrl.pathname !== window.location.pathname;
+
+        if (isSameOrigin && isHtmlPage && differentPage) {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if (mobileNav) {
+              mobileNav.classList.remove("open");
+            }
+
+            if (menuButton) {
+              menuButton.classList.remove("is-open");
+
+              menuButton.setAttribute(
+                "aria-expanded",
+                "false",
+              );
+            }
+
+            if (pageLoader) {
+              pageLoader.classList.add("visible");
+            }
+
+            setTimeout(() => {
+              window.location.href = targetUrl.href;
+            }, 350);
+          });
+        }
+      });
+
+      /* =====================================================
+         MOBILE MENU
+      ====================================================== */
+
+      if (menuButton && mobileNav) {
+        menuButton.addEventListener("click", () => {
+          const isOpen = mobileNav.classList.toggle("open");
+
+          menuButton.classList.toggle("is-open", isOpen);
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            String(isOpen),
+          );
+
+          menuButton.setAttribute(
+            "aria-label",
+            isOpen
+              ? "Close navigation menu"
+              : "Open navigation menu",
+          );
+        });
+
+        /* Close after link click */
+
+        mobileNav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+
+            menuButton.classList.remove("is-open");
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false",
+            );
+
+            menuButton.setAttribute(
+              "aria-label",
+              "Open navigation menu",
+            );
+          });
+        });
+
+        /* Close outside */
+
+        document.addEventListener("click", (event) => {
+          if (
+            !mobileNav.contains(event.target) &&
+            !menuButton.contains(event.target)
+          ) {
+            mobileNav.classList.remove("open");
+
+            menuButton.classList.remove("is-open");
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false",
+            );
+
+            menuButton.setAttribute(
+              "aria-label",
+              "Open navigation menu",
+            );
+          }
+        });
+
+        /* Escape */
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            mobileNav.classList.remove("open");
+
+            menuButton.classList.remove("is-open");
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false",
+            );
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

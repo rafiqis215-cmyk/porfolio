@@ -1,0 +1,2361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Skills | Ismail Rafiqi</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #050505;
+        --bg-soft: #080808;
+        --panel: #101010;
+        --panel-light: #151515;
+
+        --text: #f5f5f5;
+        --muted: #a1a1aa;
+
+        --line: rgba(255, 255, 255, 0.08);
+
+        --primary: #9b6cff;
+        --secondary: #7fe7d3;
+
+        /* REAL BRAND COLORS */
+        --html: #e34f26;
+        --css: #1572b6;
+        --javascript: #f7df1e;
+        --bootstrap: #7952b3;
+        --react: #61dafb;
+        --figma: #f24e1e;
+        --git: #f05032;
+        --github: #ffffff;
+        --tailwind: #06b6d4;
+        --vscode: #007acc;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at 15% 10%,
+            rgba(155, 108, 255, 0.12),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(127, 231, 211, 0.07),
+            transparent 25%
+          ),
+          var(--bg);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.2;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 70px 70px;
+        mask-image: linear-gradient(to bottom, black, transparent 80%);
+        z-index: -1;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* PAGE LOADER */
+      #pageLoader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #050505;
+        transition:
+          opacity 0.6s ease,
+          visibility 0.6s ease;
+      }
+
+      #pageLoader.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-box {
+        text-align: center;
+      }
+
+      .loader-logo {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -3px;
+        color: white;
+      }
+
+      .loader-logo span {
+        color: var(--primary);
+      }
+
+      .loader-line {
+        width: 120px;
+        height: 2px;
+        margin: 20px auto 0;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .loader-line::after {
+        content: "";
+        display: block;
+        width: 45%;
+        height: 100%;
+        background: var(--primary);
+        animation: loaderMove 1s ease-in-out infinite;
+      }
+
+      @keyframes loaderMove {
+        0% {
+          transform: translateX(-100%);
+        }
+
+        100% {
+          transform: translateX(330%);
+        }
+      }
+
+      /* NAVBAR */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(5, 5, 5, 0.78);
+        backdrop-filter: blur(22px);
+      }
+
+      .navbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-size: 25px;
+        font-weight: 900;
+        letter-spacing: -1.5px;
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .nav-links a {
+        position: relative;
+        padding: 10px 15px;
+        color: #a7a7ae;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: 0.3s ease;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 5px;
+        height: 1px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: 0.3s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        transform: scaleX(1);
+      }
+
+      .menu-btn {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        color: white;
+        font-size: 22px;
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        padding: 105px 0 80px;
+        text-align: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: rgba(155, 108, 255, 0.08);
+        filter: blur(100px);
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 13px;
+        border: 1px solid rgba(155, 108, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(155, 108, 255, 0.06);
+        color: #cdbdff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 14px var(--primary);
+      }
+
+      .hero h1 {
+        position: relative;
+        max-width: 900px;
+        margin: 27px auto 20px;
+        font-size: clamp(42px, 7vw, 88px);
+        line-height: 0.98;
+        font-weight: 900;
+        letter-spacing: -5px;
+      }
+
+      .hero h1 span {
+        color: var(--primary);
+      }
+
+      .hero p {
+        position: relative;
+        max-width: 680px;
+        margin: auto;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      /* TECHNOLOGY SECTION */
+      .technology-section {
+        padding: 30px 0 100px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 28px;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-size: clamp(26px, 4vw, 42px);
+        font-weight: 800;
+        letter-spacing: -2px;
+      }
+
+      .section-heading h2 span {
+        color: var(--primary);
+      }
+
+      .section-heading p {
+        max-width: 440px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .loop-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        white-space: nowrap;
+        border: 1px solid rgba(127, 231, 211, 0.18);
+        border-radius: 999px;
+        background: rgba(127, 231, 211, 0.04);
+        color: var(--secondary);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .loop-status i {
+        font-size: 13px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* MARQUEE */
+      .marquee-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 15px 0;
+      }
+
+      .marquee-wrapper::before,
+      .marquee-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 130px;
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      .marquee-wrapper::before {
+        left: 0;
+        background: linear-gradient(
+          90deg,
+          var(--bg),
+          rgba(5, 5, 5, 0)
+        );
+      }
+
+      .marquee-wrapper::after {
+        right: 0;
+        background: linear-gradient(
+          270deg,
+          var(--bg),
+          rgba(5, 5, 5, 0)
+        );
+      }
+
+      .marquee {
+        display: flex;
+        width: max-content;
+      }
+
+      .marquee-left {
+        animation: marqueeLeft 30s linear infinite;
+      }
+
+      .marquee-right {
+        animation: marqueeRight 34s linear infinite;
+      }
+
+      .marquee-track {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-right: 16px;
+      }
+
+      .marquee-wrapper:hover .marquee {
+        animation-play-state: paused;
+      }
+
+      @keyframes marqueeLeft {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes marqueeRight {
+        from {
+          transform: translateX(-50%);
+        }
+
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      /* TECHNOLOGY CARD */
+      .tech-card {
+        --brand: #ffffff;
+
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 245px;
+        min-width: 245px;
+        padding: 17px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.015)
+          ),
+          rgba(12, 12, 12, 0.9);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.035),
+          0 12px 35px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .tech-card::before {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: -65px;
+        right: -65px;
+        border-radius: 50%;
+        background: var(--brand);
+        opacity: 0.06;
+        filter: blur(20px);
+        transition: 0.4s ease;
+      }
+
+      .tech-card:hover {
+        transform: translateY(-8px) scale(1.025);
+        border-color: color-mix(
+          in srgb,
+          var(--brand) 45%,
+          transparent
+        );
+        box-shadow:
+          0 20px 45px rgba(0, 0, 0, 0.4),
+          0 0 30px color-mix(
+            in srgb,
+            var(--brand) 14%,
+            transparent
+          );
+      }
+
+      .tech-card:hover::before {
+        opacity: 0.16;
+        transform: scale(1.4);
+      }
+
+      .tech-icon {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+        border: 1px solid color-mix(
+          in srgb,
+          var(--brand) 25%,
+          transparent
+        );
+        border-radius: 14px;
+        background: color-mix(
+          in srgb,
+          var(--brand) 7%,
+          transparent
+        );
+        color: var(--brand);
+        font-size: 24px;
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .tech-card:hover .tech-icon {
+        transform: rotate(-7deg) scale(1.08);
+        box-shadow: 0 0 25px color-mix(
+          in srgb,
+          var(--brand) 18%,
+          transparent
+        );
+      }
+
+      .tech-info {
+        position: relative;
+        z-index: 2;
+      }
+
+      .tech-info h3 {
+        margin: 0 0 4px;
+        font-size: 14px;
+        font-weight: 800;
+        color: #ffffff;
+      }
+
+      .tech-info span {
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+      }
+
+      /* REAL BRAND COLORS */
+      .html {
+        --brand: #e34f26;
+      }
+
+      .css {
+        --brand: #1572b6;
+      }
+
+      .javascript {
+        --brand: #f7df1e;
+      }
+
+      .bootstrap {
+        --brand: #7952b3;
+      }
+
+      .react {
+        --brand: #61dafb;
+      }
+
+      .figma {
+        --brand: #f24e1e;
+      }
+
+      .git {
+        --brand: #f05032;
+      }
+
+      .github {
+        --brand: #ffffff;
+      }
+
+      .tailwind {
+        --brand: #06b6d4;
+      }
+
+      .vscode {
+        --brand: #007acc;
+      }
+
+      .github .tech-icon {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .github .tech-icon i {
+        color: #ffffff;
+      }
+
+      /* SKILL CARDS */
+      .core-section {
+        padding: 70px 0 110px;
+      }
+
+      .core-header {
+        margin-bottom: 35px;
+      }
+
+      .small-label {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--primary);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .core-header h2 {
+        margin-bottom: 12px;
+        font-size: clamp(30px, 5vw, 52px);
+        font-weight: 900;
+        letter-spacing: -3px;
+      }
+
+      .core-header p {
+        max-width: 600px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 14px;
+      }
+
+      .core-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+      }
+
+      .core-card {
+        position: relative;
+        min-height: 220px;
+        padding: 25px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.012)
+        );
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.45s ease,
+          background 0.45s ease;
+      }
+
+      .core-card::before {
+        content: "";
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        right: -90px;
+        bottom: -90px;
+        border-radius: 50%;
+        background: var(--primary);
+        opacity: 0.05;
+        filter: blur(20px);
+        transition: 0.5s ease;
+      }
+
+      .core-card:hover {
+        transform: translateY(-12px);
+        border-color: rgba(155, 108, 255, 0.28);
+        background: linear-gradient(
+          145deg,
+          rgba(155, 108, 255, 0.08),
+          rgba(255, 255, 255, 0.015)
+        );
+      }
+
+      .core-card:hover::before {
+        transform: scale(1.4);
+        opacity: 0.12;
+      }
+
+      .core-number {
+        color: rgba(255, 255, 255, 0.18);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+
+      .core-icon {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        margin: 28px 0 22px;
+        border: 1px solid rgba(155, 108, 255, 0.18);
+        border-radius: 14px;
+        background: rgba(155, 108, 255, 0.07);
+        color: var(--primary);
+        font-size: 20px;
+        transition: 0.4s ease;
+      }
+
+      .core-card:hover .core-icon {
+        transform: rotate(8deg) scale(1.08);
+        box-shadow: 0 0 30px rgba(155, 108, 255, 0.15);
+      }
+
+      .core-card h3 {
+        margin-bottom: 9px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .core-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      /* CTA */
+      .cta-section {
+        padding: 20px 0 110px;
+      }
+
+      .cta {
+        position: relative;
+        padding: 65px 50px;
+        overflow: hidden;
+        border: 1px solid rgba(155, 108, 255, 0.18);
+        border-radius: 30px;
+        background:
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(155, 108, 255, 0.16),
+            transparent 35%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.015)
+          );
+      }
+
+      .cta::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        left: -130px;
+        bottom: -180px;
+        border-radius: 50%;
+        background: var(--primary);
+        opacity: 0.08;
+        filter: blur(50px);
+      }
+
+      .cta h2 {
+        position: relative;
+        margin-bottom: 14px;
+        font-size: clamp(30px, 5vw, 58px);
+        font-weight: 900;
+        letter-spacing: -3px;
+      }
+
+      .cta h2 span {
+        color: var(--primary);
+      }
+
+      .cta p {
+        position: relative;
+        max-width: 650px;
+        margin-bottom: 30px;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 14px;
+      }
+
+      .cta-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 19px;
+        border: 1px solid rgba(155, 108, 255, 0.4);
+        border-radius: 12px;
+        background: var(--primary);
+        color: white;
+        font-size: 12px;
+        font-weight: 800;
+        box-shadow: 0 12px 35px rgba(155, 108, 255, 0.18);
+        transition: 0.35s ease;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-4px);
+        background: #a77aff;
+        color: white;
+        box-shadow: 0 18px 45px rgba(155, 108, 255, 0.3);
+      }
+
+      .cta-btn i {
+        transition: 0.3s ease;
+      }
+
+      .cta-btn:hover i {
+        transform: translateX(5px);
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 30px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .footer-text {
+        color: #66666f;
+        font-size: 11px;
+      }
+
+      .footer-text strong {
+        color: #aaa;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .footer-links a {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        color: #888;
+        transition: 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        border-color: rgba(155, 108, 255, 0.4);
+        background: rgba(155, 108, 255, 0.08);
+        transform: translateY(-3px);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1100px) {
+        .core-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 991px) {
+        .nav-links {
+          position: absolute;
+          left: 15px;
+          right: 15px;
+          top: 78px;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 5px;
+          padding: 12px;
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          background: rgba(10, 10, 10, 0.96);
+          backdrop-filter: blur(25px);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-12px);
+          transition: 0.3s ease;
+        }
+
+        .nav-links.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .nav-links a {
+          padding: 13px 15px;
+        }
+
+        .menu-btn {
+          display: grid;
+          place-items: center;
+        }
+
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .loop-status {
+          align-self: flex-start;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hero {
+          padding: 75px 0 60px;
+        }
+
+        .hero h1 {
+          letter-spacing: -3px;
+        }
+
+        .hero p {
+          font-size: 13px;
+        }
+
+        .technology-section,
+        .core-section {
+          padding-bottom: 75px;
+        }
+
+        .core-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .cta {
+          padding: 45px 28px;
+          border-radius: 24px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .core-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tech-card {
+          width: 220px;
+          min-width: 220px;
+        }
+
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
+          width: 70px;
+        }
+
+        .cta h2 {
+          letter-spacing: -2px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* ENHANCED MOBILE-FIRST RESPONSIVE */
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .topbar {
+        position: sticky;
+      }
+
+      .navbar-inner {
+        min-height: 44px;
+      }
+
+      .menu-btn {
+        cursor: pointer;
+        padding: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .menu-btn:hover,
+      .menu-btn:focus-visible {
+        border-color: rgba(155, 108, 255, 0.45);
+        background: rgba(155, 108, 255, 0.08);
+        outline: none;
+      }
+
+      .menu-btn i {
+        transition: transform 0.3s ease;
+      }
+
+      @media (max-width: 991.98px) {
+        .topbar {
+          padding: 12px 0;
+        }
+
+        .navbar-inner {
+          position: relative;
+        }
+
+        .logo {
+          font-size: 24px;
+        }
+
+        .menu-btn {
+          display: grid;
+          place-items: center;
+          width: 46px;
+          height: 46px;
+          flex-shrink: 0;
+          border-radius: 13px;
+        }
+
+        .nav-links {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: calc(100% + 10px);
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 4px;
+          width: 100%;
+          padding: 9px;
+          border: 1px solid rgba(255, 255, 255, 0.09);
+          border-radius: 18px;
+          background:
+            radial-gradient(
+              circle at 90% 0%,
+              rgba(155, 108, 255, 0.12),
+              transparent 35%
+            ),
+            rgba(8, 8, 8, 0.97);
+          -webkit-backdrop-filter: blur(24px);
+          backdrop-filter: blur(24px);
+          box-shadow:
+            0 22px 55px rgba(0, 0, 0, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateY(-10px) scale(0.98);
+          transform-origin: top center;
+          transition:
+            opacity 0.28s ease,
+            visibility 0.28s ease,
+            transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .nav-links.show {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateY(0) scale(1);
+        }
+
+        .nav-links a {
+          display: flex;
+          align-items: center;
+          min-height: 48px;
+          padding: 13px 15px;
+          border: 1px solid transparent;
+          border-radius: 12px;
+          font-size: 13px;
+          color: #a7a7ae;
+          transform: translateY(-5px);
+          opacity: 0;
+          transition:
+            color 0.25s ease,
+            background 0.25s ease,
+            border-color 0.25s ease,
+            transform 0.35s ease,
+            opacity 0.35s ease;
+        }
+
+        .nav-links.show a {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .nav-links.show a:nth-child(1) {
+          transition-delay: 0.03s;
+        }
+
+        .nav-links.show a:nth-child(2) {
+          transition-delay: 0.06s;
+        }
+
+        .nav-links.show a:nth-child(3) {
+          transition-delay: 0.09s;
+        }
+
+        .nav-links.show a:nth-child(4) {
+          transition-delay: 0.12s;
+        }
+
+        .nav-links.show a:nth-child(5) {
+          transition-delay: 0.15s;
+        }
+
+        .nav-links.show a:nth-child(6) {
+          transition-delay: 0.18s;
+        }
+
+        .nav-links.show a:nth-child(7) {
+          transition-delay: 0.21s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+          color: #fff;
+          background: rgba(155, 108, 255, 0.08);
+          border-color: rgba(155, 108, 255, 0.16);
+        }
+
+        .nav-links a::after {
+          left: 15px;
+          right: auto;
+          bottom: 7px;
+          width: 24px;
+        }
+
+        .hero {
+          padding: 70px 0 58px;
+        }
+
+        .hero h1 {
+          font-size: clamp(38px, 11vw, 70px);
+          letter-spacing: -3.5px;
+          overflow-wrap: anywhere;
+        }
+
+        .hero p {
+          max-width: 620px;
+          padding: 0 8px;
+          font-size: 13px;
+          line-height: 1.75;
+        }
+
+        .technology-section {
+          padding-bottom: 65px;
+        }
+
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 18px;
+          margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+          font-size: clamp(27px, 7vw, 40px);
+        }
+
+        .section-heading p {
+          max-width: 620px;
+          font-size: 13px;
+        }
+
+        .loop-status {
+          align-self: flex-start;
+        }
+
+        .marquee-wrapper {
+          padding: 11px 0;
+        }
+
+        .marquee-track {
+          gap: 12px;
+          padding-right: 12px;
+        }
+
+        .tech-card {
+          width: 220px;
+          min-width: 220px;
+          padding: 15px;
+        }
+
+        .core-section {
+          padding: 55px 0 70px;
+        }
+
+        .core-header {
+          margin-bottom: 25px;
+        }
+
+        .core-header h2 {
+          font-size: clamp(32px, 8vw, 50px);
+          letter-spacing: -2.5px;
+        }
+
+        .core-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .core-card {
+          min-height: 205px;
+          padding: 20px;
+          border-radius: 18px;
+        }
+
+        .core-icon {
+          margin: 22px 0 18px;
+        }
+
+        .core-card h3 {
+          font-size: 15px;
+          line-height: 1.35;
+        }
+
+        .core-card p {
+          font-size: 11px;
+          line-height: 1.65;
+        }
+
+        .cta-section {
+          padding: 10px 0 75px;
+        }
+
+        .cta {
+          padding: 42px 26px;
+          border-radius: 23px;
+        }
+
+        .cta h2 {
+          font-size: clamp(30px, 8vw, 52px);
+          line-height: 1.05;
+          letter-spacing: -2px;
+        }
+
+        .cta p {
+          font-size: 13px;
+          line-height: 1.75;
+        }
+
+        .cta-btn {
+          min-height: 46px;
+          padding: 12px 17px;
+        }
+
+        footer {
+          padding: 25px 0;
+        }
+
+        .footer-inner {
+          align-items: center;
+          flex-direction: column;
+          text-align: center;
+          gap: 16px;
+        }
+
+        .footer-links {
+          justify-content: center;
+        }
+
+        .footer-links a {
+          width: 40px;
+          height: 40px;
+          border-radius: 11px;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        .topbar .container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .logo {
+          font-size: 23px;
+        }
+
+        .nav-links {
+          left: 0;
+          right: 0;
+          width: 100%;
+        }
+
+        .hero {
+          padding: 62px 0 48px;
+        }
+
+        .eyebrow {
+          font-size: 10px;
+          padding: 8px 12px;
+        }
+
+        .hero h1 {
+          max-width: 100%;
+          margin-top: 22px;
+          font-size: clamp(36px, 12.5vw, 58px);
+          line-height: 1;
+          letter-spacing: -3px;
+        }
+
+        .hero p {
+          font-size: 12.5px;
+          line-height: 1.8;
+        }
+
+        .technology-section {
+          padding-bottom: 55px;
+        }
+
+        .section-heading h2 {
+          font-size: clamp(25px, 8vw, 34px);
+          letter-spacing: -1.7px;
+        }
+
+        .section-heading p {
+          margin-top: 10px !important;
+          font-size: 12px;
+        }
+
+        .loop-status {
+          font-size: 9px;
+          padding: 7px 10px;
+        }
+
+        .tech-card {
+          width: 205px;
+          min-width: 205px;
+          padding: 14px;
+          border-radius: 16px;
+        }
+
+        .tech-icon {
+          width: 46px;
+          height: 46px;
+          font-size: 21px;
+          border-radius: 12px;
+        }
+
+        .tech-info h3 {
+          font-size: 13px;
+        }
+
+        .tech-info span {
+          font-size: 9px;
+        }
+
+        .core-grid {
+          grid-template-columns: 1fr;
+          gap: 11px;
+        }
+
+        .core-card {
+          min-height: auto;
+          padding: 20px;
+        }
+
+        .core-icon {
+          margin: 20px 0 16px;
+        }
+
+        .core-card h3 {
+          font-size: 16px;
+        }
+
+        .core-card p {
+          max-width: 480px;
+          font-size: 12px;
+        }
+
+        .cta {
+          padding: 35px 21px;
+        }
+
+        .cta h2 {
+          font-size: clamp(29px, 9vw, 44px);
+        }
+
+        .cta-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .footer-text {
+          max-width: 280px;
+          line-height: 1.6;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .hero h1 {
+          font-size: 34px;
+          letter-spacing: -2px;
+        }
+
+        .tech-card {
+          width: 190px;
+          min-width: 190px;
+        }
+
+        .cta {
+          padding-left: 17px;
+          padding-right: 17px;
+        }
+      }
+
+      @media (hover: none) and (pointer: coarse) {
+        .tech-card:hover,
+        .core-card:hover,
+        .cta-btn:hover {
+          transform: none;
+        }
+
+        .marquee-wrapper:hover .marquee {
+          animation-play-state: running;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- PAGE LOADER -->
+    <div id="pageLoader">
+      <div class="loader-box">
+        <div class="loader-logo">
+          ISR<span>.</span>
+        </div>
+
+        <div class="loader-line"></div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="topbar">
+      <div class="container">
+        <div class="navbar-inner">
+          <a href="landing page.html" class="logo">
+            ISR<span>.</span>
+          </a>
+
+          <nav class="nav-links" id="navLinks">
+            <a href="landing page.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="projects.html">Projects</a>
+
+            <!-- EXPERIENCE ADDED -->
+            <a href="experience.html">Experience</a>
+
+            <a href="testimonials.html">Testimonials</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+
+          <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            My Skills
+          </div>
+
+          <h1>
+            Tools &
+            <span>Technologies</span>
+          </h1>
+
+          <p>
+            A modern collection of technologies and creative tools I use to
+            build responsive, interactive, and professional digital
+            experiences.
+          </p>
+        </div>
+      </section>
+
+      <!-- TECHNOLOGY SECTION -->
+      <section class="technology-section">
+        <div class="container-fluid px-0">
+
+          <div class="container">
+            <div class="section-heading">
+
+              <div>
+                <h2>
+                  Technologies I
+                  <span>Work With</span>
+                </h2>
+
+                <p class="mt-3">
+                  The technologies below continuously move across the page in
+                  an infinite loop. Hover over them to pause the animation.
+                </p>
+              </div>
+
+              <div class="loop-status">
+                <i class="bi bi-arrow-repeat"></i>
+                Infinite Loop
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ROW 1 -->
+          <div class="marquee-wrapper">
+            <div class="marquee marquee-left">
+
+              <div class="marquee-track">
+
+                <div class="tech-card html">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-html"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>HTML5</h3>
+                    <span>Markup</span>
+                  </div>
+                </div>
+
+                <div class="tech-card css">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-css"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>CSS3</h3>
+                    <span>Styling</span>
+                  </div>
+                </div>
+
+                <div class="tech-card javascript">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-js"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>JavaScript</h3>
+                    <span>Programming</span>
+                  </div>
+                </div>
+
+                <div class="tech-card bootstrap">
+                  <div class="tech-icon">
+                    <i class="bi bi-bootstrap"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Bootstrap</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card react">
+                  <div class="tech-icon">
+                    <i class="bi bi-braces"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>React</h3>
+                    <span>Library</span>
+                  </div>
+                </div>
+
+                <div class="tech-card figma">
+                  <div class="tech-icon">
+                    <i class="bi bi-palette"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Figma</h3>
+                    <span>UI / UX</span>
+                  </div>
+                </div>
+
+                <div class="tech-card git">
+                  <div class="tech-icon">
+                    <i class="bi bi-git"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Git</h3>
+                    <span>Version Control</span>
+                  </div>
+                </div>
+
+                <div class="tech-card github">
+                  <div class="tech-icon">
+                    <i class="bi bi-github"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>GitHub</h3>
+                    <span>Development</span>
+                  </div>
+                </div>
+
+                <div class="tech-card tailwind">
+                  <div class="tech-icon">
+                    <i class="bi bi-wind"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Tailwind CSS</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card vscode">
+                  <div class="tech-icon">
+                    <i class="bi bi-code-slash"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>VS Code</h3>
+                    <span>Editor</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- DUPLICATE TRACK -->
+              <div class="marquee-track">
+
+                <div class="tech-card html">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-html"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>HTML5</h3>
+                    <span>Markup</span>
+                  </div>
+                </div>
+
+                <div class="tech-card css">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-css"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>CSS3</h3>
+                    <span>Styling</span>
+                  </div>
+                </div>
+
+                <div class="tech-card javascript">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-js"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>JavaScript</h3>
+                    <span>Programming</span>
+                  </div>
+                </div>
+
+                <div class="tech-card bootstrap">
+                  <div class="tech-icon">
+                    <i class="bi bi-bootstrap"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Bootstrap</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card react">
+                  <div class="tech-icon">
+                    <i class="bi bi-braces"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>React</h3>
+                    <span>Library</span>
+                  </div>
+                </div>
+
+                <div class="tech-card figma">
+                  <div class="tech-icon">
+                    <i class="bi bi-palette"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Figma</h3>
+                    <span>UI / UX</span>
+                  </div>
+                </div>
+
+                <div class="tech-card git">
+                  <div class="tech-icon">
+                    <i class="bi bi-git"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Git</h3>
+                    <span>Version Control</span>
+                  </div>
+                </div>
+
+                <div class="tech-card github">
+                  <div class="tech-icon">
+                    <i class="bi bi-github"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>GitHub</h3>
+                    <span>Development</span>
+                  </div>
+                </div>
+
+                <div class="tech-card tailwind">
+                  <div class="tech-icon">
+                    <i class="bi bi-wind"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Tailwind CSS</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card vscode">
+                  <div class="tech-icon">
+                    <i class="bi bi-code-slash"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>VS Code</h3>
+                    <span>Editor</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ROW 2 -->
+          <div class="marquee-wrapper">
+            <div class="marquee marquee-right">
+
+              <div class="marquee-track">
+
+                <div class="tech-card react">
+                  <div class="tech-icon">
+                    <i class="bi bi-braces"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>React</h3>
+                    <span>Library</span>
+                  </div>
+                </div>
+
+                <div class="tech-card figma">
+                  <div class="tech-icon">
+                    <i class="bi bi-palette"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Figma</h3>
+                    <span>UI / UX</span>
+                  </div>
+                </div>
+
+                <div class="tech-card github">
+                  <div class="tech-icon">
+                    <i class="bi bi-github"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>GitHub</h3>
+                    <span>Development</span>
+                  </div>
+                </div>
+
+                <div class="tech-card tailwind">
+                  <div class="tech-icon">
+                    <i class="bi bi-wind"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Tailwind CSS</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card vscode">
+                  <div class="tech-icon">
+                    <i class="bi bi-code-slash"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>VS Code</h3>
+                    <span>Editor</span>
+                  </div>
+                </div>
+
+                <div class="tech-card html">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-html"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>HTML5</h3>
+                    <span>Markup</span>
+                  </div>
+                </div>
+
+                <div class="tech-card css">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-css"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>CSS3</h3>
+                    <span>Styling</span>
+                  </div>
+                </div>
+
+                <div class="tech-card javascript">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-js"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>JavaScript</h3>
+                    <span>Programming</span>
+                  </div>
+                </div>
+
+                <div class="tech-card bootstrap">
+                  <div class="tech-icon">
+                    <i class="bi bi-bootstrap"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Bootstrap</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card git">
+                  <div class="tech-icon">
+                    <i class="bi bi-git"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Git</h3>
+                    <span>Version Control</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- DUPLICATE TRACK -->
+              <div class="marquee-track">
+
+                <div class="tech-card react">
+                  <div class="tech-icon">
+                    <i class="bi bi-braces"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>React</h3>
+                    <span>Library</span>
+                  </div>
+                </div>
+
+                <div class="tech-card figma">
+                  <div class="tech-icon">
+                    <i class="bi bi-palette"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Figma</h3>
+                    <span>UI / UX</span>
+                  </div>
+                </div>
+
+                <div class="tech-card github">
+                  <div class="tech-icon">
+                    <i class="bi bi-github"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>GitHub</h3>
+                    <span>Development</span>
+                  </div>
+                </div>
+
+                <div class="tech-card tailwind">
+                  <div class="tech-icon">
+                    <i class="bi bi-wind"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Tailwind CSS</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card vscode">
+                  <div class="tech-icon">
+                    <i class="bi bi-code-slash"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>VS Code</h3>
+                    <span>Editor</span>
+                  </div>
+                </div>
+
+                <div class="tech-card html">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-html"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>HTML5</h3>
+                    <span>Markup</span>
+                  </div>
+                </div>
+
+                <div class="tech-card css">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-css"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>CSS3</h3>
+                    <span>Styling</span>
+                  </div>
+                </div>
+
+                <div class="tech-card javascript">
+                  <div class="tech-icon">
+                    <i class="bi bi-filetype-js"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>JavaScript</h3>
+                    <span>Programming</span>
+                  </div>
+                </div>
+
+                <div class="tech-card bootstrap">
+                  <div class="tech-icon">
+                    <i class="bi bi-bootstrap"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Bootstrap</h3>
+                    <span>Framework</span>
+                  </div>
+                </div>
+
+                <div class="tech-card git">
+                  <div class="tech-icon">
+                    <i class="bi bi-git"></i>
+                  </div>
+
+                  <div class="tech-info">
+                    <h3>Git</h3>
+                    <span>Version Control</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CORE SKILLS -->
+      <section class="core-section">
+        <div class="container">
+
+          <div class="core-header">
+            <span class="small-label">What I Do</span>
+
+            <h2>
+              Core <span>Skills</span>
+            </h2>
+
+            <p>
+              Beyond individual tools, I focus on creating clean, responsive,
+              user-friendly and visually engaging web experiences.
+            </p>
+          </div>
+
+          <div class="core-grid">
+
+            <div class="core-card">
+              <span class="core-number">01</span>
+
+              <div class="core-icon">
+                <i class="bi bi-code-slash"></i>
+              </div>
+
+              <h3>Frontend Development</h3>
+
+              <p>
+                Building structured and interactive interfaces using modern
+                frontend technologies.
+              </p>
+            </div>
+
+            <div class="core-card">
+              <span class="core-number">02</span>
+
+              <div class="core-icon">
+                <i class="bi bi-phone"></i>
+              </div>
+
+              <h3>Responsive Design</h3>
+
+              <p>
+                Creating layouts that work smoothly across desktops, tablets
+                and mobile devices.
+              </p>
+            </div>
+
+            <div class="core-card">
+              <span class="core-number">03</span>
+
+              <div class="core-icon">
+                <i class="bi bi-vector-pen"></i>
+              </div>
+
+              <h3>UI Design</h3>
+
+              <p>
+                Designing modern interfaces with strong visual hierarchy,
+                spacing and typography.
+              </p>
+            </div>
+
+            <div class="core-card">
+              <span class="core-number">04</span>
+
+              <div class="core-icon">
+                <i class="bi bi-bezier2"></i>
+              </div>
+
+              <h3>UI / UX</h3>
+
+              <p>
+                Combining visual design with simple and intuitive user
+                experiences.
+              </p>
+            </div>
+
+            <div class="core-card">
+              <span class="core-number">05</span>
+
+              <div class="core-icon">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+
+              <h3>Creative Thinking</h3>
+
+              <p>
+                Turning ideas into polished digital concepts with modern
+                visual interactions.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="container">
+
+          <div class="cta">
+
+            <h2>
+              Let's build something
+              <span>impressive.</span>
+            </h2>
+
+            <p>
+              Have an idea, website or digital project in mind? Let's turn it
+              into a clean, modern and professional experience.
+            </p>
+
+            <a href="projects.html" class="cta-btn">
+              View My Projects
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+
+        <div class="footer-inner">
+
+          <div class="footer-text">
+            © 2026 <strong>Ismail Rafiqi</strong>. All rights reserved.
+          </div>
+
+          <div class="footer-links">
+
+            <a
+              href="https://www.linkedin.com/in/ismail-rafiqi-502160397"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <i class="bi bi-linkedin"></i>
+            </a>
+
+            <a
+              href="https://www.facebook.com/share/19c1tSCqsZ/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a
+              href="https://www.instagram.com/_.3xile__?stkn=YnE3emVqcDJieTNi&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <i class="bi bi-instagram"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      /* PAGE LOADER */
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("pageLoader");
+
+        setTimeout(() => {
+          loader.classList.add("hide");
+        }, 350);
+      });
+
+      /* MOBILE MENU */
+      const menuBtn = document.getElementById("menuBtn");
+      const navLinks = document.getElementById("navLinks");
+
+      menuBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        const isOpen = navLinks.classList.toggle("show");
+
+        menuBtn.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+        menuBtn.setAttribute(
+          "aria-label",
+          isOpen
+            ? "Close navigation"
+            : "Open navigation"
+        );
+
+        const icon = menuBtn.querySelector("i");
+
+        if (isOpen) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x-lg");
+        } else {
+          icon.classList.remove("bi-x-lg");
+          icon.classList.add("bi-list");
+        }
+      });
+
+      /* CLOSE MENU WHEN LINK IS CLICKED */
+      document
+        .querySelectorAll(".nav-links a")
+        .forEach((link) => {
+
+          link.addEventListener("click", function () {
+
+            navLinks.classList.remove("show");
+
+            menuBtn.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            menuBtn.setAttribute(
+              "aria-label",
+              "Open navigation"
+            );
+
+            const icon = menuBtn.querySelector("i");
+
+            icon.classList.remove("bi-x-lg");
+            icon.classList.add("bi-list");
+          });
+
+        });
+
+      /* CLOSE MENU WHEN CLICKING OUTSIDE */
+      document.addEventListener("click", function (event) {
+
+        if (
+          !navLinks.contains(event.target) &&
+          !menuBtn.contains(event.target)
+        ) {
+
+          navLinks.classList.remove("show");
+
+          menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuBtn.setAttribute(
+            "aria-label",
+            "Open navigation"
+          );
+
+          const icon = menuBtn.querySelector("i");
+
+          icon.classList.remove("bi-x-lg");
+          icon.classList.add("bi-list");
+        }
+
+      });
+
+      /* CLOSE MENU WITH ESCAPE */
+      document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+          navLinks.classList.remove("show");
+
+          menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuBtn.setAttribute(
+            "aria-label",
+            "Open navigation"
+          );
+
+          const icon = menuBtn.querySelector("i");
+
+          icon.classList.remove("bi-x-lg");
+          icon.classList.add("bi-list");
+        }
+
+      });
+
+      /* PAGE TRANSITION */
+      const loader = document.getElementById("pageLoader");
+
+      document
+        .querySelectorAll('a[href$=".html"]')
+        .forEach((link) => {
+
+          link.addEventListener("click", function (event) {
+
+            const target = this.getAttribute("href");
+
+            if (
+              !target ||
+              target.startsWith("#") ||
+              this.target === "_blank"
+            ) {
+              return;
+            }
+
+            event.preventDefault();
+
+            loader.classList.remove("hide");
+
+            setTimeout(() => {
+              window.location.href = target;
+            }, 350);
+
+          });
+
+        });
+    </script>
+  </body>
+</html>

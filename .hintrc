@@ -1,0 +1,43 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter",
+          "mask-image",
+          "-webkit-mask",
+          "min-height: auto",
+          "border-color: color-mix(in srgb, var(--brand) 45%, transparent)",
+          "border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent)"
+        ]
+      }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "link-name": "off",
+        "button-name": "off"
+      }
+    ],
+    "no-inline-styles": "off",
+    "disown-opener": "off",
+    "axe/forms": [
+      "default",
+      {
+        "select-name": "off",
+        "label": "off"
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "frame-title": "off"
+      }
+    ],
+    "detect-css-reflows/composite": "off"
+  }
+}

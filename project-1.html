@@ -1,0 +1,2598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Maison Noir | Fine Dining Restaurant</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================
+         ROOT
+      ========================================= */
+
+      :root {
+        --black: #080808;
+        --dark: #101010;
+        --dark-2: #171717;
+        --cream: #f5f0e8;
+        --gold: #c9a66b;
+        --gold-light: #e4c891;
+        --gray: #9b9b9b;
+        --white: #ffffff;
+        --border: rgba(255, 255, 255, 0.1);
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      /* =========================================
+         RESET
+      ========================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      ::selection {
+        background: var(--gold);
+        color: #000;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font-family: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* =========================================
+         GLOBAL
+      ========================================= */
+
+      .section-padding {
+        padding: 120px 0;
+      }
+
+      .gold {
+        color: var(--gold);
+      }
+
+      .section-label {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-size: clamp(42px, 5vw, 70px);
+        line-height: 1.05;
+        margin-bottom: 22px;
+        letter-spacing: -1.5px;
+      }
+
+      .section-description {
+        color: var(--gray);
+        max-width: 580px;
+        line-height: 1.85;
+        font-size: 15px;
+      }
+
+      /* =========================================
+         NAVBAR
+      ========================================= */
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding: 25px 0;
+        transition:
+          background 0.4s ease,
+          padding 0.4s ease,
+          border 0.4s ease;
+      }
+
+      .navbar.scrolled {
+        background: rgba(8, 8, 8, 0.94);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .navbar-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .navbar-brand {
+        color: white !important;
+        font-family: "Playfair Display", serif;
+        font-size: 27px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .navbar-brand span {
+        color: var(--gold);
+      }
+
+      .nav-links {
+        align-items: center;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.72) !important;
+        font-size: 13px;
+        margin: 0 10px;
+        padding: 8px 4px !important;
+        transition: 0.3s ease;
+        position: relative;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--gold) !important;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.3s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 70%;
+      }
+
+      .nav-btn {
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        padding: 11px 22px;
+        transition: 0.3s ease;
+        font-size: 12px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+
+      .nav-btn:hover {
+        background: var(--gold);
+        color: #000;
+      }
+
+      /* =========================================
+         MOBILE NAV BUTTON
+      ========================================= */
+
+      .navbar-toggler {
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        border: 1px solid rgba(201, 166, 107, 0.4);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s ease;
+      }
+
+      .navbar-toggler:hover {
+        border-color: var(--gold);
+        background: rgba(201, 166, 107, 0.08);
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      .navbar-toggler-icon {
+        width: 21px;
+        height: 1.5px;
+        background: var(--gold);
+        display: inline-block;
+        position: relative;
+        transition: 0.3s ease;
+      }
+
+      .navbar-toggler-icon::before,
+      .navbar-toggler-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 21px;
+        height: 1.5px;
+        background: var(--gold);
+        transition: 0.3s ease;
+      }
+
+      .navbar-toggler-icon::before {
+        top: -7px;
+      }
+
+      .navbar-toggler-icon::after {
+        top: 7px;
+      }
+
+      .navbar-toggler.is-open .navbar-toggler-icon {
+        background: transparent;
+      }
+
+      .navbar-toggler.is-open .navbar-toggler-icon::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+
+      .navbar-toggler.is-open .navbar-toggler-icon::after {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
+      /* =========================================
+         MOBILE MENU
+      ========================================= */
+
+      .mobile-menu {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        padding: 25px 20px 28px;
+        background:
+          radial-gradient(
+            circle at 100% 0%,
+            rgba(201, 166, 107, 0.09),
+            transparent 35%
+          ),
+          rgba(8, 8, 8, 0.98);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        pointer-events: none;
+
+        transition:
+          opacity 0.3s ease,
+          transform 0.35s var(--ease),
+          visibility 0.3s ease;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .mobile-menu .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.8);
+        padding: 16px 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 15px;
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          color 0.3s ease,
+          opacity 0.35s ease,
+          transform 0.4s var(--ease),
+          padding 0.3s ease;
+      }
+
+      .mobile-menu.open .mobile-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu.open .mobile-link:nth-child(1) {
+        transition-delay: 60ms;
+      }
+
+      .mobile-menu.open .mobile-link:nth-child(2) {
+        transition-delay: 110ms;
+      }
+
+      .mobile-menu.open .mobile-link:nth-child(3) {
+        transition-delay: 160ms;
+      }
+
+      .mobile-menu.open .mobile-link:nth-child(4) {
+        transition-delay: 210ms;
+      }
+
+      .mobile-menu.open .mobile-link:nth-child(5) {
+        transition-delay: 260ms;
+      }
+
+      .mobile-menu.open .mobile-link:nth-child(6) {
+        transition-delay: 310ms;
+      }
+
+      .mobile-link:hover,
+      .mobile-link.active {
+        color: var(--gold);
+        padding-left: 10px;
+      }
+
+      .mobile-link-number {
+        color: var(--gold);
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-right: 12px;
+      }
+
+      .mobile-link-arrow {
+        font-size: 13px;
+        opacity: 0.5;
+        transition: 0.3s ease;
+      }
+
+      .mobile-link:hover .mobile-link-arrow {
+        opacity: 1;
+        transform: translateX(5px);
+      }
+
+      .mobile-menu-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 22px;
+      }
+
+      .mobile-status {
+        color: #777;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      .mobile-status::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        display: inline-block;
+        border-radius: 50%;
+        background: #73c991;
+        margin-right: 7px;
+        box-shadow: 0 0 10px rgba(115, 201, 145, 0.7);
+      }
+
+      .mobile-reserve {
+        color: #000;
+        background: var(--gold);
+        padding: 11px 15px;
+        font-size: 10px;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+
+      /* =========================================
+         HERO
+      ========================================= */
+
+      .hero {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        background:
+          linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.7) 43%,
+            rgba(0, 0, 0, 0.32) 100%
+          ),
+          url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=2000&q=90");
+
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(201, 166, 107, 0.08);
+        filter: blur(100px);
+        right: -150px;
+        top: 10%;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.25),
+          transparent 45%,
+          rgba(0, 0, 0, 0.9)
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding-top: 80px;
+      }
+
+      .hero-small {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        animation: fadeUp 1s var(--ease) forwards;
+      }
+
+      .hero h1 {
+        font-size: clamp(60px, 9vw, 120px);
+        line-height: 0.9;
+        max-width: 900px;
+        margin-bottom: 35px;
+        letter-spacing: -4px;
+        animation: fadeUp 1s var(--ease) 0.15s forwards;
+        opacity: 0;
+      }
+
+      .hero h1 span {
+        color: var(--gold);
+        font-style: italic;
+      }
+
+      .hero-text {
+        max-width: 540px;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.8;
+        margin-bottom: 35px;
+        animation: fadeUp 1s var(--ease) 0.3s forwards;
+        opacity: 0;
+      }
+
+      .hero-buttons {
+        animation: fadeUp 1s var(--ease) 0.45s forwards;
+        opacity: 0;
+      }
+
+      .btn-gold {
+        background: var(--gold);
+        color: #000;
+        padding: 15px 30px;
+        border: 1px solid var(--gold);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        transition: 0.35s ease;
+        display: inline-block;
+      }
+
+      .btn-gold:hover {
+        background: transparent;
+        color: var(--gold);
+        transform: translateY(-3px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        padding: 15px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        transition: 0.35s ease;
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-3px);
+      }
+
+      .hero-bottom {
+        position: absolute;
+        z-index: 3;
+        bottom: 35px;
+        left: 0;
+        width: 100%;
+      }
+
+      .hero-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 11px;
+      }
+
+      .hero-info i {
+        color: var(--gold);
+        margin-right: 8px;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =========================================
+         ABOUT
+      ========================================= */
+
+      .about {
+        background: var(--cream);
+        color: var(--black);
+      }
+
+      .about .section-description {
+        color: #666;
+      }
+
+      .about-image {
+        height: 620px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .about-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.8s var(--ease);
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+      .about-badge {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+        z-index: 2;
+        min-width: 145px;
+        background: rgba(0, 0, 0, 0.88);
+        color: white;
+        padding: 22px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .about-badge strong {
+        font-family: "Playfair Display";
+        font-size: 35px;
+        color: var(--gold);
+        display: block;
+      }
+
+      .about-content {
+        padding-left: 50px;
+      }
+
+      .signature {
+        margin-top: 35px;
+        font-family: "Playfair Display";
+        font-style: italic;
+        font-size: 25px;
+      }
+
+      /* =========================================
+         MENU
+      ========================================= */
+
+      .menu-section {
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(201, 166, 107, 0.04),
+            transparent 25%
+          ),
+          var(--black);
+      }
+
+      .menu-filter {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 50px 0 35px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background: transparent;
+        color: #aaa;
+        border: 1px solid var(--border);
+        padding: 10px 22px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--gold);
+        color: #000;
+        border-color: var(--gold);
+      }
+
+      .menu-item {
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .menu-card {
+        border-bottom: 1px solid var(--border);
+        padding: 28px 0;
+        display: flex;
+        gap: 20px;
+        transition: 0.35s ease;
+      }
+
+      .menu-card:hover {
+        padding-left: 10px;
+        border-color: rgba(201, 166, 107, 0.4);
+      }
+
+      .menu-image {
+        width: 115px;
+        height: 95px;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+
+      .menu-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s var(--ease);
+      }
+
+      .menu-card:hover .menu-image img {
+        transform: scale(1.1);
+      }
+
+      .menu-info {
+        flex: 1;
+      }
+
+      .menu-name-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .menu-name {
+        font-size: 21px;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .menu-price {
+        color: var(--gold);
+        font-family: "Playfair Display";
+        font-size: 20px;
+        white-space: nowrap;
+      }
+
+      .menu-description {
+        color: var(--gray);
+        font-size: 13px;
+        line-height: 1.6;
+        margin-top: 8px;
+        margin-bottom: 0;
+      }
+
+      .menu-tag {
+        display: inline-block;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--gold);
+        border: 1px solid rgba(201, 166, 107, 0.4);
+        padding: 4px 7px;
+        margin-top: 10px;
+      }
+
+      /* =========================================
+         SPECIAL
+      ========================================= */
+
+      .special {
+        min-height: 650px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+
+        background:
+          linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.35)),
+          url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=2000&q=90");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      .special-content {
+        max-width: 600px;
+      }
+
+      .special h2 {
+        font-size: clamp(45px, 6vw, 75px);
+        margin-bottom: 25px;
+      }
+
+      .special-price {
+        font-family: "Playfair Display";
+        font-size: 42px;
+        color: var(--gold);
+        margin: 25px 0;
+      }
+
+      /* =========================================
+         GALLERY
+      ========================================= */
+
+      .gallery {
+        background: var(--dark);
+      }
+
+      .gallery-item {
+        height: 330px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .gallery-item.large {
+        height: 680px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.7s var(--ease);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: 0.4s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .gallery-overlay i {
+        width: 55px;
+        height: 55px;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        color: white;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* =========================================
+         TESTIMONIALS
+      ========================================= */
+
+      .testimonial-section {
+        background: var(--cream);
+        color: #000;
+      }
+
+      .testimonial-section .section-description {
+        color: #666;
+      }
+
+      .testimonial-card {
+        background: #fff;
+        padding: 40px;
+        height: 100%;
+        border: 1px solid #e8e4dc;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.45s var(--ease),
+          box-shadow 0.45s ease,
+          border-color 0.45s ease;
+      }
+
+      .testimonial-card::before {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(201, 166, 107, 0.08);
+        filter: blur(50px);
+        top: -80px;
+        right: -70px;
+        transition: 0.5s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(201, 166, 107, 0.45);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+      }
+
+      .testimonial-card:hover::before {
+        transform: scale(1.5);
+      }
+
+      .stars {
+        color: var(--gold);
+        margin-bottom: 25px;
+        letter-spacing: 3px;
+        font-size: 14px;
+      }
+
+      .testimonial-text {
+        color: #555;
+        line-height: 1.9;
+        font-size: 15px;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .customer {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .customer-img {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(201, 166, 107, 0.5);
+      }
+
+      .customer-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .customer-name {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .customer-role {
+        color: #999;
+        font-size: 11px;
+        margin-top: 3px;
+      }
+
+      /* =========================================
+         RESERVATION
+      ========================================= */
+
+      .reservation {
+        background:
+          radial-gradient(
+            circle at 80% 50%,
+            rgba(201, 166, 107, 0.07),
+            transparent 30%
+          ),
+          var(--black);
+      }
+
+      .reservation-box {
+        background: var(--dark-2);
+        border: 1px solid var(--border);
+        padding: 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .reservation-box::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: rgba(201, 166, 107, 0.05);
+        border-radius: 50%;
+        filter: blur(80px);
+        right: -100px;
+        top: -100px;
+      }
+
+      .form-control,
+      .form-select {
+        background: #0d0d0d;
+        border: 1px solid var(--border);
+        color: white;
+        border-radius: 0;
+        padding: 15px;
+        min-height: 54px;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        background: #0d0d0d;
+        color: white;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.08);
+      }
+
+      .form-control::placeholder {
+        color: #666;
+      }
+
+      .form-select option {
+        background: #111;
+      }
+
+      /* =========================================
+         CONTACT
+      ========================================= */
+
+      .contact {
+        background: var(--dark);
+      }
+
+      .contact-item {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 35px;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        border: 1px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        flex-shrink: 0;
+        transition: 0.3s ease;
+      }
+
+      .contact-item:hover .contact-icon {
+        background: var(--gold);
+        color: #000;
+        transform: translateY(-3px);
+      }
+
+      .contact-item h5 {
+        font-family: "DM Sans";
+        font-size: 15px;
+        margin-bottom: 7px;
+      }
+
+      .contact-item p {
+        color: var(--gray);
+        margin: 0;
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      .map-box {
+        height: 400px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+          url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .map-pin {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        animation: pinPulse 2s infinite;
+      }
+
+      @keyframes pinPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(201, 166, 107, 0.5);
+        }
+
+        50% {
+          box-shadow: 0 0 0 20px rgba(201, 166, 107, 0);
+        }
+      }
+
+      /* =========================================
+         FOOTER
+      ========================================= */
+
+      footer {
+        background: #070707;
+        padding-top: 80px;
+      }
+
+      .footer-logo {
+        font-family: "Playfair Display";
+        font-size: 35px;
+        color: white;
+      }
+
+      .footer-logo span {
+        color: var(--gold);
+      }
+
+      .footer-text {
+        color: #777;
+        line-height: 1.8;
+        max-width: 350px;
+        margin-top: 20px;
+      }
+
+      .footer-title {
+        font-family: "DM Sans";
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        margin-bottom: 25px;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: #777;
+        font-size: 14px;
+        transition: 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--gold);
+        padding-left: 4px;
+      }
+
+      .socials {
+        display: flex;
+        gap: 10px;
+      }
+
+      .social {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        transition: 0.3s ease;
+      }
+
+      .social:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-4px);
+      }
+
+      .copyright {
+        border-top: 1px solid var(--border);
+        margin-top: 70px;
+        padding: 25px 0;
+        color: #555;
+        font-size: 12px;
+      }
+
+      /* =========================================
+         SCROLL REVEAL
+      ========================================= */
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s var(--ease);
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =========================================
+         RESPONSIVE - TABLET
+      ========================================= */
+
+      @media (max-width: 991px) {
+        .navbar {
+          background: rgba(8, 8, 8, 0.92);
+          -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
+        }
+
+        .section-padding {
+          padding: 95px 0;
+        }
+
+        .about-content {
+          padding-left: 0;
+          margin-top: 45px;
+        }
+
+        .about-image {
+          height: 500px;
+        }
+
+        .gallery-item.large {
+          height: 400px;
+        }
+
+        .reservation-box {
+          padding: 45px 30px;
+        }
+      }
+
+      /* =========================================
+         RESPONSIVE - MOBILE
+      ========================================= */
+
+      @media (max-width: 767px) {
+        .section-padding {
+          padding: 80px 0;
+        }
+
+        .navbar {
+          padding: 18px 0;
+        }
+
+        .navbar.scrolled {
+          padding: 12px 0;
+        }
+
+        .navbar-brand {
+          font-size: 23px;
+        }
+
+        .hero {
+          min-height: 100svh;
+          background-position: 65% center;
+        }
+
+        .hero-content {
+          padding-top: 50px;
+        }
+
+        .hero h1 {
+          font-size: clamp(55px, 17vw, 78px);
+          letter-spacing: -3px;
+          max-width: 100%;
+        }
+
+        .hero-text {
+          font-size: 14px;
+          max-width: 95%;
+        }
+
+        .hero-bottom {
+          display: none;
+        }
+
+        .hero-buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .btn-outline {
+          margin-left: 0;
+        }
+
+        .about-image {
+          height: 400px;
+        }
+
+        .about-badge {
+          bottom: 15px;
+          right: 15px;
+          padding: 18px;
+        }
+
+        .about-badge strong {
+          font-size: 28px;
+        }
+
+        .menu-filter {
+          gap: 7px;
+        }
+
+        .filter-btn {
+          padding: 9px 14px;
+          font-size: 9px;
+        }
+
+        .menu-card {
+          gap: 14px;
+          padding: 22px 0;
+        }
+
+        .menu-image {
+          width: 85px;
+          height: 75px;
+        }
+
+        .menu-name {
+          font-size: 17px;
+        }
+
+        .menu-price {
+          font-size: 17px;
+        }
+
+        .menu-description {
+          font-size: 12px;
+        }
+
+        .special {
+          min-height: 570px;
+          background-attachment: scroll;
+        }
+
+        .special h2 {
+          font-size: 48px;
+        }
+
+        .gallery-item,
+        .gallery-item.large {
+          height: 300px;
+        }
+
+        .testimonial-card {
+          padding: 30px;
+        }
+
+        .reservation-box {
+          padding: 30px 20px;
+        }
+
+        .map-box {
+          height: 300px;
+          margin-top: 20px;
+        }
+
+        footer {
+          padding-top: 65px;
+        }
+
+        .copyright {
+          margin-top: 50px;
+        }
+      }
+
+      /* =========================================
+         SMALL MOBILE
+      ========================================= */
+
+      @media (max-width: 480px) {
+        .container {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .hero h1 {
+          font-size: 53px;
+        }
+
+        .section-title {
+          font-size: 42px;
+        }
+
+        .menu-name-row {
+          gap: 8px;
+        }
+
+        .menu-image {
+          width: 75px;
+          height: 70px;
+        }
+
+        .menu-name {
+          font-size: 15px;
+        }
+
+        .menu-price {
+          font-size: 15px;
+        }
+
+        .mobile-menu {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .mobile-menu-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .mobile-reserve {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      /* =========================================
+         REDUCED MOTION
+      ========================================= */
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* =========================================
+         DESKTOP MOBILE MENU HIDDEN
+      ========================================= */
+
+      @media (min-width: 992px) {
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <div class="navbar-wrapper">
+          <a class="navbar-brand" href="#home"> Maison <span>Noir</span> </a>
+
+          <div class="d-none d-lg-flex nav-links">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#menu" class="nav-link">Menu</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="#reservation" class="nav-btn d-none d-lg-inline">
+              RESERVE A TABLE
+            </a>
+
+            <button
+              class="navbar-toggler d-lg-none"
+              id="menuButton"
+              type="button"
+              aria-controls="mobileNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+
+        <div class="mobile-menu" id="mobileNav">
+          <a href="#home" class="mobile-link active">
+            <span>
+              <span class="mobile-link-number">01</span>
+              Home
+            </span>
+
+            <i class="bi bi-arrow-up-right mobile-link-arrow"></i>
+          </a>
+
+          <a href="#about" class="mobile-link">
+            <span>
+              <span class="mobile-link-number">02</span>
+              About
+            </span>
+
+            <i class="bi bi-arrow-up-right mobile-link-arrow"></i>
+          </a>
+
+          <a href="#menu" class="mobile-link">
+            <span>
+              <span class="mobile-link-number">03</span>
+              Menu
+            </span>
+
+            <i class="bi bi-arrow-up-right mobile-link-arrow"></i>
+          </a>
+
+          <a href="#gallery" class="mobile-link">
+            <span>
+              <span class="mobile-link-number">04</span>
+              Gallery
+            </span>
+
+            <i class="bi bi-arrow-up-right mobile-link-arrow"></i>
+          </a>
+
+          <a href="#contact" class="mobile-link">
+            <span>
+              <span class="mobile-link-number">05</span>
+              Contact
+            </span>
+
+            <i class="bi bi-arrow-up-right mobile-link-arrow"></i>
+          </a>
+
+          <a href="#reservation" class="mobile-link">
+            <span>
+              <span class="mobile-link-number">06</span>
+              Reservation
+            </span>
+
+            <i class="bi bi-arrow-up-right mobile-link-arrow"></i>
+          </a>
+
+          <div class="mobile-menu-bottom">
+            <span class="mobile-status">Open for reservations</span>
+
+            <a href="#reservation" class="mobile-reserve"> BOOK A TABLE </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- =========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="hero-small">Fine Dining · Since 1998</div>
+
+        <h1>
+          Taste the art of
+          <span>fine dining.</span>
+        </h1>
+
+        <p class="hero-text">
+          An intimate culinary experience where exceptional ingredients,
+          timeless techniques and modern creativity come together.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#menu" class="btn-gold">EXPLORE MENU</a>
+
+          <a href="#reservation" class="btn-outline">BOOK A TABLE</a>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="container">
+          <div class="hero-info">
+            <div>
+              <i class="bi bi-geo-alt"></i>
+              24 Avenue de Paris
+            </div>
+
+            <div>
+              <i class="bi bi-clock"></i>
+              Open Tue — Sun · 17:00 — 23:30
+            </div>
+
+            <div>
+              <i class="bi bi-telephone"></i>
+              +1 555 018 9922
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         ABOUT
+    ========================================= -->
+
+    <section class="about section-padding" id="about">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 reveal">
+            <div class="about-image">
+              <img
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85"
+                alt="Elegant Maison Noir restaurant interior"
+              />
+
+              <div class="about-badge">
+                <strong>25</strong>
+                Years of excellence
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 reveal">
+            <div class="about-content">
+              <div class="section-label">Our Story</div>
+
+              <h2 class="section-title">
+                Where passion becomes <i>flavor.</i>
+              </h2>
+
+              <p class="section-description">
+                Maison Noir was born from a simple belief: dining should be more
+                than a meal. It should be a moment worth remembering.
+              </p>
+
+              <p class="section-description mt-3">
+                Our chefs combine classic European techniques with contemporary
+                ideas, creating dishes that respect tradition while constantly
+                moving forward.
+              </p>
+
+              <div class="signature">— Chef Alexander Laurent</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         MENU
+    ========================================= -->
+
+    <section class="menu-section section-padding" id="menu">
+      <div class="container">
+        <div class="text-center reveal">
+          <div class="section-label">Discover</div>
+
+          <h2 class="section-title">Our <i class="gold">Menu</i></h2>
+
+          <p class="section-description mx-auto">
+            Carefully selected ingredients transformed into unforgettable
+            culinary experiences.
+          </p>
+        </div>
+
+        <div class="menu-filter">
+          <button class="filter-btn active" data-filter="all">All</button>
+
+          <button class="filter-btn" data-filter="starter">Starters</button>
+
+          <button class="filter-btn" data-filter="main">Main Course</button>
+
+          <button class="filter-btn" data-filter="dessert">Desserts</button>
+        </div>
+
+        <div class="row g-4">
+          <!-- STARTER -->
+
+          <div class="col-lg-6 menu-item" data-category="starter">
+            <div class="menu-card">
+              <div class="menu-image">
+                <img
+                  src="https://images.unsplash.com/photo-1541014741259-de529411b96a?auto=format&fit=crop&w=500&q=80"
+                  alt="Heritage Burrata"
+                />
+              </div>
+
+              <div class="menu-info">
+                <div class="menu-name-row">
+                  <h3 class="menu-name">Heritage Burrata</h3>
+                  <div class="menu-price">$18</div>
+                </div>
+
+                <p class="menu-description">
+                  Creamy burrata, heirloom tomatoes, basil oil and aged
+                  balsamic.
+                </p>
+
+                <span class="menu-tag">Vegetarian</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STARTER -->
+
+          <div class="col-lg-6 menu-item" data-category="starter">
+            <div class="menu-card">
+              <div class="menu-image">
+                <img
+                  src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=80"
+                  alt="Seared Scallops"
+                />
+              </div>
+
+              <div class="menu-info">
+                <div class="menu-name-row">
+                  <h3 class="menu-name">Seared Scallops</h3>
+                  <div class="menu-price">$24</div>
+                </div>
+
+                <p class="menu-description">
+                  Atlantic scallops, cauliflower purée, brown butter and capers.
+                </p>
+
+                <span class="menu-tag">Chef's Choice</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAIN -->
+
+          <div class="col-lg-6 menu-item" data-category="main">
+            <div class="menu-card">
+              <div class="menu-image">
+                <img
+                  src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
+                  alt="Prime Ribeye"
+                />
+              </div>
+
+              <div class="menu-info">
+                <div class="menu-name-row">
+                  <h3 class="menu-name">Prime Ribeye</h3>
+                  <div class="menu-price">$48</div>
+                </div>
+
+                <p class="menu-description">
+                  Dry-aged prime ribeye, roasted garlic, seasonal vegetables and
+                  jus.
+                </p>
+
+                <span class="menu-tag">Signature</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAIN -->
+
+          <div class="col-lg-6 menu-item" data-category="main">
+            <div class="menu-card">
+              <div class="menu-image">
+                <img
+                  src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=500&q=80"
+                  alt="Truffle Tagliolini"
+                />
+              </div>
+
+              <div class="menu-info">
+                <div class="menu-name-row">
+                  <h3 class="menu-name">Truffle Tagliolini</h3>
+                  <div class="menu-price">$34</div>
+                </div>
+
+                <p class="menu-description">
+                  Fresh pasta, black truffle, parmesan and cultured butter.
+                </p>
+
+                <span class="menu-tag">Vegetarian</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESSERT -->
+
+          <div class="col-lg-6 menu-item" data-category="dessert">
+            <div class="menu-card">
+              <div class="menu-image">
+                <img
+                  src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=500&q=80"
+                  alt="Vanilla Creme Brulee"
+                />
+              </div>
+
+              <div class="menu-info">
+                <div class="menu-name-row">
+                  <h3 class="menu-name">Vanilla Crème Brûlée</h3>
+                  <div class="menu-price">$14</div>
+                </div>
+
+                <p class="menu-description">
+                  Madagascar vanilla custard with caramelized sugar crust.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESSERT -->
+
+          <div class="col-lg-6 menu-item" data-category="dessert">
+            <div class="menu-card">
+              <div class="menu-image">
+                <img
+                  src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80"
+                  alt="Dark Chocolate Torte"
+                />
+              </div>
+
+              <div class="menu-info">
+                <div class="menu-name-row">
+                  <h3 class="menu-name">Dark Chocolate Torte</h3>
+                  <div class="menu-price">$16</div>
+                </div>
+
+                <p class="menu-description">
+                  72% dark chocolate, sea salt, hazelnut and vanilla cream.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SPECIAL EXPERIENCE
+    ========================================= -->
+
+    <section class="special">
+      <div class="container">
+        <div class="special-content reveal">
+          <div class="section-label">Chef's Experience</div>
+
+          <h2>
+            Seven courses.<br />
+            One unforgettable <i class="gold">night.</i>
+          </h2>
+
+          <p class="section-description">
+            Let our chef take you on a culinary journey through seasonal
+            ingredients and creative interpretations.
+          </p>
+
+          <div class="special-price">
+            $125
+            <small style="font-size: 16px; color: #aaa"> per person </small>
+          </div>
+
+          <a href="#reservation" class="btn-gold"> RESERVE EXPERIENCE </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         GALLERY
+    ========================================= -->
+
+    <section class="gallery section-padding" id="gallery">
+      <div class="container">
+        <div class="text-center reveal">
+          <div class="section-label">Atmosphere</div>
+
+          <h2 class="section-title">
+            A feast for the <i class="gold">eyes.</i>
+          </h2>
+        </div>
+
+        <div class="row g-3 mt-4">
+          <div class="col-lg-4">
+            <div class="gallery-item large">
+              <img
+                src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85"
+                alt="Restaurant food"
+              />
+
+              <div class="gallery-overlay">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="gallery-item mb-3">
+              <img
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85"
+                alt="Restaurant interior"
+              />
+
+              <div class="gallery-overlay">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+                alt="Fine dining dish"
+              />
+
+              <div class="gallery-overlay">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="gallery-item mb-3">
+              <img
+                src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=85"
+                alt="Prime steak"
+              />
+
+              <div class="gallery-overlay">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=85"
+                alt="Fine dessert"
+              />
+
+              <div class="gallery-overlay">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         TESTIMONIALS
+    ========================================= -->
+
+    <section class="testimonial-section section-padding">
+      <div class="container">
+        <div class="text-center reveal">
+          <div class="section-label">Testimonials</div>
+
+          <h2 class="section-title">Loved by our <i>guests.</i></h2>
+        </div>
+
+        <div class="row g-4 mt-4">
+          <div class="col-lg-4 reveal">
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+
+              <p class="testimonial-text">
+                "Every detail was perfect. The food, atmosphere and service made
+                our evening genuinely unforgettable."
+              </p>
+
+              <div class="customer">
+                <div class="customer-img">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    alt="Olivia Martin"
+                  />
+                </div>
+
+                <div>
+                  <div class="customer-name">Olivia Martin</div>
+                  <div class="customer-role">Verified Guest</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+
+              <p class="testimonial-text">
+                "The tasting menu was incredible. Each course felt completely
+                different, yet everything worked beautifully together."
+              </p>
+
+              <div class="customer">
+                <div class="customer-img">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    alt="Daniel Carter"
+                  />
+                </div>
+
+                <div>
+                  <div class="customer-name">Daniel Carter</div>
+                  <div class="customer-role">Verified Guest</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+
+              <p class="testimonial-text">
+                "Maison Noir is now one of our favorite places in the city.
+                Elegant without ever feeling pretentious."
+              </p>
+
+              <div class="customer">
+                <div class="customer-img">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/65.jpg"
+                    alt="Sophia Williams"
+                  />
+                </div>
+
+                <div>
+                  <div class="customer-name">Sophia Williams</div>
+                  <div class="customer-role">Verified Guest</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         RESERVATION
+    ========================================= -->
+
+    <section class="reservation section-padding" id="reservation">
+      <div class="container">
+        <div class="reservation-box reveal">
+          <div class="row align-items-center">
+            <div class="col-lg-5 mb-5 mb-lg-0">
+              <div class="section-label">Reservations</div>
+
+              <h2 class="section-title">
+                Your table is <i class="gold">waiting.</i>
+              </h2>
+
+              <p class="section-description">
+                Join us for an unforgettable evening. We recommend booking in
+                advance.
+              </p>
+            </div>
+
+            <div class="col-lg-7">
+              <form id="reservationForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Email Address"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <input
+                      type="tel"
+                      class="form-control"
+                      placeholder="Phone Number"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <select class="form-select" required>
+                      <option value="" selected disabled>Guests</option>
+                      <option>1 Guest</option>
+                      <option>2 Guests</option>
+                      <option>3 Guests</option>
+                      <option>4 Guests</option>
+                      <option>5 Guests</option>
+                      <option>6+ Guests</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="reservationDate"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <select class="form-select" required>
+                      <option value="" selected disabled>Select Time</option>
+                      <option>5:00 PM</option>
+                      <option>6:00 PM</option>
+                      <option>7:00 PM</option>
+                      <option>8:00 PM</option>
+                      <option>9:00 PM</option>
+                      <option>10:00 PM</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <textarea
+                      class="form-control"
+                      rows="4"
+                      placeholder="Special requests..."
+                    ></textarea>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="btn-gold border-0">
+                      REQUEST RESERVATION
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         CONTACT
+    ========================================= -->
+
+    <section class="contact section-padding" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 reveal">
+            <div class="section-label">Find Us</div>
+
+            <h2 class="section-title">Come <i class="gold">say hello.</i></h2>
+
+            <p class="section-description mb-5">
+              We would love to welcome you to Maison Noir. Come experience our
+              food, hospitality and atmosphere.
+            </p>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+
+              <div>
+                <h5>Address</h5>
+
+                <p>
+                  24 Avenue de Paris<br />
+                  Downtown District
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="bi bi-clock"></i>
+              </div>
+
+              <div>
+                <h5>Opening Hours</h5>
+
+                <p>
+                  Tuesday — Sunday<br />
+                  17:00 — 23:30
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="bi bi-telephone"></i>
+              </div>
+
+              <div>
+                <h5>Contact</h5>
+
+                <p>
+                  +1 555 018 9922<br />
+                  hello@maisonnoir.com
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7 reveal">
+            <div class="map-box">
+              <div class="map-pin">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <div class="footer-logo">Maison <span>Noir</span></div>
+
+            <p class="footer-text">
+              A contemporary fine dining destination dedicated to exceptional
+              food, thoughtful hospitality and unforgettable moments.
+            </p>
+
+            <div class="socials mt-4">
+              <a href="#" class="social" aria-label="Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+
+              <a href="#" class="social" aria-label="Facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
+
+              <a href="#" class="social" aria-label="Twitter">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+
+              <a href="#" class="social" aria-label="TikTok">
+                <i class="bi bi-tiktok"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <div class="footer-title">Explore</div>
+
+            <ul class="footer-links">
+              <li>
+                <a href="#about">About</a>
+              </li>
+
+              <li>
+                <a href="#menu">Menu</a>
+              </li>
+
+              <li>
+                <a href="#gallery">Gallery</a>
+              </li>
+
+              <li>
+                <a href="#reservation">Reservations</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <div class="footer-title">Information</div>
+
+            <ul class="footer-links">
+              <li>
+                <a href="#">Privacy</a>
+              </li>
+
+              <li>
+                <a href="#">Terms</a>
+              </li>
+
+              <li>
+                <a href="#">Careers</a>
+              </li>
+
+              <li>
+                <a href="#">Press</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="footer-title">Newsletter</div>
+
+            <p class="footer-text">
+              Receive our latest menu updates, events and special experiences.
+            </p>
+
+            <form id="newsletterForm" class="input-group mt-3">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Your email"
+                aria-label="Your email"
+                required
+              />
+
+              <button type="submit" class="btn-gold">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="copyright text-center">
+          © 2026 Maison Noir. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================
+         BOOTSTRAP JS
+    ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      /* =========================================
+         NAVBAR SCROLL EFFECT
+      ========================================= */
+
+      const navbar = document.getElementById("navbar");
+
+      function handleNavbarScroll() {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+
+      window.addEventListener("scroll", handleNavbarScroll);
+      handleNavbarScroll();
+
+      /* =========================================
+         MOBILE NAVIGATION
+      ========================================= */
+
+      const menuButton = document.getElementById("menuButton");
+      const mobileNav = document.getElementById("mobileNav");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      function closeMobileMenu() {
+        mobileNav.classList.remove("open");
+        menuButton.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+      }
+
+      function openMobileMenu() {
+        mobileNav.classList.add("open");
+        menuButton.classList.add("is-open");
+        menuButton.setAttribute("aria-expanded", "true");
+        document.body.classList.add("menu-open");
+      }
+
+      menuButton.addEventListener("click", function () {
+        const isOpen = mobileNav.classList.contains("open");
+
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          closeMobileMenu();
+
+          mobileLinks.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          this.classList.add("active");
+        });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (
+          mobileNav.classList.contains("open") &&
+          !mobileNav.contains(event.target) &&
+          !menuButton.contains(event.target)
+        ) {
+          closeMobileMenu();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeMobileMenu();
+        }
+      });
+
+      /* =========================================
+         DESKTOP ACTIVE NAVIGATION
+      ========================================= */
+
+      const desktopLinks = document.querySelectorAll(".nav-links .nav-link");
+
+      const sections = document.querySelectorAll("section[id]");
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute("id");
+
+              desktopLinks.forEach((link) => {
+                link.classList.remove("active");
+
+                if (link.getAttribute("href") === "#" + id) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+        },
+        {
+          threshold: 0.35,
+        },
+      );
+
+      sections.forEach((section) => {
+        sectionObserver.observe(section);
+      });
+
+      /* =========================================
+         MENU FILTER
+      ========================================= */
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const menuItems = document.querySelectorAll(".menu-item");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+
+          this.classList.add("active");
+
+          const filter = this.dataset.filter;
+
+          menuItems.forEach((item) => {
+            const category = item.dataset.category;
+
+            if (filter === "all" || category === filter) {
+              item.style.display = "block";
+
+              requestAnimationFrame(() => {
+                item.style.opacity = "1";
+                item.style.transform = "translateY(0)";
+              });
+            } else {
+              item.style.opacity = "0";
+              item.style.transform = "translateY(10px)";
+
+              setTimeout(() => {
+                item.style.display = "none";
+              }, 250);
+            }
+          });
+        });
+      });
+
+      /* =========================================
+         SCROLL REVEAL
+      ========================================= */
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+        },
+      );
+
+      revealElements.forEach((element) => {
+        revealObserver.observe(element);
+      });
+
+      /* =========================================
+         RESERVATION DATE
+      ========================================= */
+
+      const reservationDate = document.getElementById("reservationDate");
+
+      if (reservationDate) {
+        const today = new Date().toISOString().split("T")[0];
+
+        reservationDate.setAttribute("min", today);
+      }
+
+      /* =========================================
+         RESERVATION FORM
+      ========================================= */
+
+      const reservationForm = document.getElementById("reservationForm");
+
+      reservationForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const button = reservationForm.querySelector("button");
+
+        const originalText = button.textContent;
+
+        button.textContent = "REQUEST SENT ✓";
+        button.style.background = "#7bbf91";
+        button.style.borderColor = "#7bbf91";
+
+        setTimeout(() => {
+          reservationForm.reset();
+
+          button.textContent = originalText;
+          button.style.background = "";
+          button.style.borderColor = "";
+        }, 2500);
+      });
+
+      /* =========================================
+         NEWSLETTER FORM
+      ========================================= */
+
+      const newsletterForm = document.getElementById("newsletterForm");
+
+      newsletterForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const input = newsletterForm.querySelector("input");
+        const button = newsletterForm.querySelector("button");
+
+        input.value = "";
+        button.innerHTML = '<i class="bi bi-check-lg"></i>';
+
+        setTimeout(() => {
+          button.innerHTML = '<i class="bi bi-arrow-right"></i>';
+        }, 2200);
+      });
+
+      /* =========================================
+         CLOSE MOBILE MENU ON RESIZE
+      ========================================= */
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 992) {
+          closeMobileMenu();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2614 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SplashWash | Premium Car Wash</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --blue: #087ff5;
+        --blue-dark: #075bc0;
+        --blue-light: #eaf5ff;
+        --navy: #0d2345;
+        --text: #142a4b;
+        --muted: #65758b;
+        --white: #ffffff;
+        --border: #e7edf4;
+        --green: #18b77a;
+        --shadow: 0 20px 60px rgba(19, 64, 110, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #fff;
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      section {
+        scroll-margin-top: 100px;
+      }
+
+      /* =========================================================
+         PROFESSIONAL NAVBAR
+      ========================================================= */
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 17px 0;
+        background: rgba(255, 255, 255, 0.82);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(8, 127, 245, 0.06);
+        transition:
+          padding 0.35s ease,
+          background 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 10px 0;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 40px rgba(13, 35, 69, 0.09);
+        border-bottom-color: rgba(8, 127, 245, 0.1);
+      }
+
+      .navbar-wrapper {
+        min-height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+      }
+
+      /* BRAND */
+
+      .navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        color: var(--navy) !important;
+        font-size: 23px;
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -1px;
+        flex-shrink: 0;
+      }
+
+      .brand-logo {
+        width: 45px;
+        height: 45px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        border-radius: 14px;
+        color: #fff;
+        font-size: 19px;
+        background: linear-gradient(135deg, #087ff5, #36b7ff);
+        box-shadow: 0 10px 28px rgba(8, 127, 245, 0.25);
+        transition: 0.35s ease;
+      }
+
+      .navbar-brand:hover .brand-logo {
+        transform: rotate(-7deg) translateY(-2px);
+        box-shadow: 0 15px 35px rgba(8, 127, 245, 0.32);
+      }
+
+      .brand-name {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .brand-sub {
+        display: block;
+        color: #8b99aa;
+        font-size: 7px;
+        line-height: 1;
+        letter-spacing: 2.6px;
+        font-weight: 700;
+      }
+
+      /* DESKTOP NAV */
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        margin-left: auto;
+      }
+
+      .nav-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #435775 !important;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 11px 13px !important;
+        margin: 0 !important;
+        border-radius: 10px;
+        transition:
+          color 0.3s ease,
+          background 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--blue) !important;
+        background: rgba(8, 127, 245, 0.055);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        width: 0;
+        height: 3px;
+        border-radius: 20px;
+        background: var(--blue);
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link.active {
+        color: var(--blue) !important;
+      }
+
+      .nav-link.active::after {
+        width: 20px;
+      }
+
+      /* NAV CTA */
+
+      .book-btn {
+        gap: 8px;
+        margin-left: 8px !important;
+        padding: 12px 18px !important;
+        color: #fff !important;
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, #087ff5, #149cf6);
+        box-shadow: 0 10px 25px rgba(8, 127, 245, 0.22);
+        overflow: hidden;
+      }
+
+      .book-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          110deg,
+          transparent 20%,
+          rgba(255, 255, 255, 0.22) 50%,
+          transparent 80%
+        );
+        transform: translateX(-120%);
+        transition: transform 0.6s ease;
+      }
+
+      .book-btn:hover::before {
+        transform: translateX(120%);
+      }
+
+      .book-btn:hover {
+        color: #fff !important;
+        background: linear-gradient(135deg, #075bc0, #087ff5);
+        transform: translateY(-2px);
+        box-shadow: 0 15px 32px rgba(8, 127, 245, 0.28);
+      }
+
+      .book-btn::after {
+        display: none;
+      }
+
+      /* MOBILE TOGGLER */
+
+      .navbar-toggler {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        padding: 0;
+        border: 1px solid var(--border) !important;
+        border-radius: 13px;
+        background: #fff;
+        box-shadow: 0 7px 20px rgba(13, 35, 69, 0.07);
+        transition: 0.3s ease;
+      }
+
+      .navbar-toggler:hover {
+        border-color: #b8ddff !important;
+        background: #f8fcff;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: 0 0 0 4px rgba(8, 127, 245, 0.08);
+      }
+
+      .navbar-toggler span {
+        width: 21px;
+        height: 2px;
+        border-radius: 10px;
+        background: var(--navy);
+        transition: 0.3s ease;
+      }
+
+      .navbar-toggler.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .navbar-toggler.is-open span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-8px);
+      }
+
+      .navbar-toggler.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* MOBILE MENU */
+
+      .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-height: calc(100vh - 75px);
+        overflow-y: auto;
+        padding: 15px 0 25px;
+        background: rgba(255, 255, 255, 0.98);
+        -webkit-backdrop-filter: blur(22px);
+        backdrop-filter: blur(22px);
+        border-top: 1px solid var(--border);
+        box-shadow: 0 25px 55px rgba(13, 35, 69, 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease,
+          visibility 0.3s ease;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-inner {
+        padding: 5px 0;
+      }
+
+      .mobile-nav-link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 17px !important;
+        margin: 4px 0 !important;
+        border-radius: 13px;
+        color: #435775 !important;
+        font-size: 15px;
+        font-weight: 700;
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease,
+          background 0.25s ease,
+          color 0.25s ease;
+      }
+
+      .mobile-menu.open .mobile-nav-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(1) {
+        transition-delay: 0.04s;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(3) {
+        transition-delay: 0.12s;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(4) {
+        transition-delay: 0.16s;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(5) {
+        transition-delay: 0.2s;
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(6) {
+        transition-delay: 0.24s;
+      }
+
+      .mobile-nav-link::after {
+        display: none;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link.active {
+        color: var(--blue) !important;
+        background: #f1f8ff;
+      }
+
+      .mobile-nav-link i {
+        font-size: 15px;
+        opacity: 0.5;
+      }
+
+      .mobile-nav-link.active i {
+        opacity: 1;
+        transform: translateX(3px);
+      }
+
+      .mobile-book {
+        width: 100%;
+        justify-content: center;
+        margin-top: 12px !important;
+        padding: 15px !important;
+        border-radius: 13px !important;
+      }
+
+      /* MOBILE MENU INFO */
+
+      .mobile-menu-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 17px;
+        padding: 15px;
+        border: 1px solid #e4eef8;
+        border-radius: 15px;
+        background: #f7fbff;
+      }
+
+      .mobile-info-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--blue);
+        background: #e6f4ff;
+        border-radius: 11px;
+      }
+
+      .mobile-menu-info small {
+        display: block;
+        color: #8a98a9;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .mobile-menu-info strong {
+        display: block;
+        margin-top: 2px;
+        color: var(--navy);
+        font-size: 13px;
+      }
+
+      /* =========================================================
+         HERO
+      ========================================================= */
+
+      .hero {
+        min-height: 850px;
+        padding-top: 120px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 80% 45%,
+            rgba(0, 153, 255, 0.08),
+            transparent 35%
+          ),
+          #fff;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 650px;
+        height: 650px;
+        border-radius: 50%;
+        background: #eef8ff;
+        right: -220px;
+        top: 80px;
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 5;
+        padding-top: 75px;
+      }
+
+      .hero-label {
+        color: var(--blue);
+        letter-spacing: 4px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 6vw, 78px);
+        line-height: 1.04;
+        letter-spacing: -4px;
+        color: var(--navy);
+        font-weight: 800;
+        max-width: 680px;
+      }
+
+      .hero h1 span {
+        color: var(--blue);
+      }
+
+      .hero-text {
+        color: var(--muted);
+        max-width: 590px;
+        font-size: 17px;
+        line-height: 1.8;
+        margin: 25px 0;
+      }
+
+      .hero-benefits {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        margin: 28px 0;
+      }
+
+      .benefit {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 14px;
+        color: #405673;
+        font-weight: 600;
+      }
+
+      .benefit-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #e8f5ff;
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 13px;
+        flex-wrap: wrap;
+      }
+
+      .primary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: linear-gradient(135deg, #0782f7, #159ef8);
+        color: white;
+        padding: 15px 26px;
+        border-radius: 50px;
+        font-weight: 700;
+        box-shadow: 0 15px 35px rgba(8, 127, 245, 0.25);
+        transition: 0.3s;
+      }
+
+      .primary-btn:hover {
+        color: white;
+        transform: translateY(-4px);
+        box-shadow: 0 20px 45px rgba(8, 127, 245, 0.3);
+      }
+
+      .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        background: white;
+        border: 1px solid var(--border);
+        padding: 15px 25px;
+        border-radius: 50px;
+        font-weight: 700;
+        transition: 0.3s;
+      }
+
+      .secondary-btn:hover {
+        color: var(--blue);
+        border-color: #9bd5ff;
+        transform: translateY(-3px);
+      }
+
+      /* HERO VISUAL */
+
+      .hero-visual {
+        position: absolute;
+        right: -40px;
+        top: 110px;
+        width: 58%;
+        height: 680px;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .hero-car {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        filter: drop-shadow(0 35px 35px rgba(15, 60, 100, 0.16));
+        animation: carFloat 5s ease-in-out infinite;
+      }
+
+      @keyframes carFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(15, 153, 255, 0.25);
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(3px);
+        animation: bubbleFloat 5s infinite ease-in-out;
+      }
+
+      .bubble.one {
+        width: 22px;
+        height: 22px;
+        right: 31%;
+        top: 18%;
+      }
+
+      .bubble.two {
+        width: 12px;
+        height: 12px;
+        right: 42%;
+        top: 10%;
+        animation-delay: 1s;
+      }
+
+      .bubble.three {
+        width: 30px;
+        height: 30px;
+        right: 18%;
+        top: 35%;
+        animation-delay: 2s;
+      }
+
+      .bubble.four {
+        width: 15px;
+        height: 15px;
+        right: 48%;
+        top: 30%;
+        animation-delay: 1.5s;
+      }
+
+      @keyframes bubbleFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.7;
+        }
+
+        50% {
+          transform: translateY(-30px) scale(1.15);
+          opacity: 1;
+        }
+      }
+
+      /* =========================================================
+         SERVICE BAR
+      ========================================================= */
+
+      .service-bar {
+        position: relative;
+        z-index: 10;
+        background: white;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 50px rgba(20, 70, 120, 0.1);
+        border-radius: 18px;
+        margin-top: -80px;
+        overflow: hidden;
+      }
+
+      .service-mini {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 27px 25px;
+        position: relative;
+      }
+
+      .service-mini:not(:last-child)::after {
+        content: "";
+        width: 1px;
+        height: 55px;
+        background: var(--border);
+        position: absolute;
+        right: 0;
+      }
+
+      .mini-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #eaf6ff;
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+
+      .service-mini h6 {
+        margin: 0 0 4px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      .service-mini p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      /* =========================================================
+         GENERAL
+      ========================================================= */
+
+      .section {
+        padding: 110px 0;
+      }
+
+      .section-label {
+        color: var(--blue);
+        font-size: 12px;
+        letter-spacing: 3px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 13px;
+      }
+
+      .section-title {
+        color: var(--navy);
+        font-size: clamp(34px, 4vw, 52px);
+        line-height: 1.1;
+        letter-spacing: -2px;
+        font-weight: 800;
+      }
+
+      .section-text {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* =========================================================
+         SERVICES
+      ========================================================= */
+
+      .service-section {
+        background: #f8fbff;
+      }
+
+      .big-service-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 35px;
+        height: 100%;
+        transition: 0.4s;
+        box-shadow: 0 5px 25px rgba(20, 70, 120, 0.04);
+      }
+
+      .big-service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow);
+        border-color: #bde3ff;
+      }
+
+      .big-icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #e7f5ff, #f4fbff);
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 27px;
+        margin-bottom: 25px;
+      }
+
+      .big-service-card h4 {
+        color: var(--navy);
+      }
+
+      .big-service-card p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .learn-more {
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      /* =========================================================
+         PRICING
+      ========================================================= */
+
+      .price-card {
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 35px;
+        background: white;
+        height: 100%;
+        transition: 0.4s;
+        position: relative;
+      }
+
+      .price-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow);
+      }
+
+      .price-card.featured {
+        border: 2px solid var(--blue);
+        box-shadow: 0 20px 60px rgba(8, 127, 245, 0.13);
+      }
+
+      .popular {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        padding: 6px 11px;
+        background: var(--blue);
+        color: white;
+        border-radius: 30px;
+        font-size: 10px;
+        font-weight: 800;
+      }
+
+      .price {
+        font-size: 48px;
+        font-weight: 800;
+        color: var(--navy);
+        margin: 18px 0;
+      }
+
+      .price small {
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .price-list {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+      }
+
+      .price-list li {
+        margin-bottom: 14px;
+        color: #53667d;
+      }
+
+      .price-list i {
+        color: var(--blue);
+        margin-right: 8px;
+      }
+
+      /* =========================================================
+         ABOUT
+      ========================================================= */
+
+      .about-image {
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 580px;
+        object-fit: cover;
+        border-radius: 25px;
+        box-shadow: var(--shadow);
+      }
+
+      .experience-card {
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(15px);
+        border-radius: 18px;
+        padding: 20px 25px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .experience-card h3 {
+        color: var(--blue);
+        margin: 0;
+        font-size: 32px;
+      }
+
+      .experience-card span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .about-check {
+        display: flex;
+        gap: 13px;
+        margin-bottom: 20px;
+      }
+
+      .about-check i {
+        color: var(--blue);
+        font-size: 20px;
+      }
+
+      /* =========================================================
+         STATS
+      ========================================================= */
+
+      .stats {
+        background: linear-gradient(135deg, #0578eb, #12a3f8);
+        color: white;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat h2 {
+        font-size: 45px;
+        font-weight: 800;
+        margin-bottom: 5px;
+      }
+
+      .stat p {
+        opacity: 0.8;
+        margin: 0;
+      }
+
+      /* =========================================================
+         BOOKING
+      ========================================================= */
+
+      .booking {
+        background: #f7fbff;
+      }
+
+      .booking-box {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 25px;
+        padding: 50px;
+        box-shadow: var(--shadow);
+      }
+
+      .form-label {
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--navy);
+      }
+
+      .form-control,
+      .form-select {
+        border: 1px solid #dfe7ef;
+        padding: 14px 15px;
+        border-radius: 11px;
+        color: var(--navy);
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 4px rgba(8, 127, 245, 0.08);
+      }
+
+      /* =========================================================
+         REVIEWS
+      ========================================================= */
+
+      .review-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 30px;
+        height: 100%;
+        transition: 0.3s;
+      }
+
+      .review-card:hover {
+        transform: translateY(-7px);
+        box-shadow: var(--shadow);
+      }
+
+      .stars {
+        color: #ffb82e;
+        letter-spacing: 3px;
+        margin-bottom: 18px;
+      }
+
+      .review-card p {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .review-user {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 25px;
+      }
+
+      .review-user img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+      }
+
+      .review-user small {
+        display: block;
+        color: #8a98a9;
+      }
+
+      /* =========================================================
+         CONTACT
+      ========================================================= */
+
+      .contact-info {
+        background: #f6faff;
+        border-radius: 25px;
+        padding: 40px;
+      }
+
+      .contact-row {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .contact-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        background: white;
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(20, 70, 120, 0.08);
+        flex-shrink: 0;
+      }
+
+      .contact-row p {
+        margin: 3px 0 0;
+        color: var(--muted);
+      }
+
+      /* =========================================================
+         FOOTER
+      ========================================================= */
+
+      footer {
+        background: #081a34;
+        color: white;
+        padding: 70px 0 25px;
+      }
+
+      footer .navbar-brand {
+        color: white !important;
+      }
+
+      .footer-text {
+        color: #9aacc2;
+        line-height: 1.8;
+        max-width: 350px;
+      }
+
+      .footer-title {
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: #91a5bd;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #3db7ff;
+      }
+
+      .socials {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .social {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: 0.3s;
+      }
+
+      .social:hover {
+        background: var(--blue);
+        border-color: var(--blue);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 50px;
+        padding-top: 25px;
+        color: #71859d;
+        font-size: 13px;
+      }
+
+      /* =========================================================
+         SCROLL REVEAL
+      ========================================================= */
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: 0.8s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =========================================================
+         RESPONSIVE
+      ========================================================= */
+
+      @media (max-width: 1199px) {
+        .nav-link {
+          padding-left: 10px !important;
+          padding-right: 10px !important;
+        }
+
+        .hero-visual {
+          width: 57%;
+          right: -80px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .navbar {
+          padding: 12px 0;
+        }
+
+        .navbar.scrolled {
+          padding: 9px 0;
+        }
+
+        .hero {
+          min-height: 1050px;
+        }
+
+        .hero-content {
+          padding-top: 30px;
+        }
+
+        .hero-visual {
+          width: 100%;
+          height: 500px;
+          right: 0;
+          top: 550px;
+        }
+
+        .service-bar {
+          margin-top: -20px;
+        }
+
+        .service-mini {
+          border-bottom: 1px solid var(--border);
+        }
+
+        .service-mini::after {
+          display: none;
+        }
+
+        .booking-box {
+          padding: 35px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .navbar-brand {
+          font-size: 20px;
+        }
+
+        .brand-logo {
+          width: 41px;
+          height: 41px;
+          margin-right: 8px;
+        }
+
+        .brand-sub {
+          font-size: 6px;
+          letter-spacing: 2px;
+        }
+
+        .navbar-toggler {
+          width: 43px;
+          height: 43px;
+        }
+
+        .hero {
+          min-height: 950px;
+        }
+
+        .hero h1 {
+          letter-spacing: -2px;
+        }
+
+        .hero-text {
+          font-size: 15px;
+        }
+
+        .hero-benefits {
+          gap: 15px;
+        }
+
+        .hero-visual {
+          height: 380px;
+          top: 600px;
+        }
+
+        .section {
+          padding: 75px 0;
+        }
+
+        .service-mini {
+          padding: 20px;
+        }
+
+        .booking-box {
+          padding: 25px;
+        }
+
+        .about-image img {
+          height: 400px;
+        }
+
+        .stat h2 {
+          font-size: 34px;
+        }
+
+        .experience-card {
+          left: 15px;
+          bottom: 15px;
+        }
+
+        .hero-buttons a {
+          width: 100%;
+        }
+
+        .contact-info {
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
+
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <div class="navbar-wrapper">
+          <!-- BRAND -->
+
+          <a class="navbar-brand" href="#home">
+            <span class="brand-logo">
+              <i class="bi bi-droplet-fill"></i>
+            </span>
+
+            <span class="brand-name">
+              SplashWash
+
+              <span class="brand-sub"> CLEANER • BRIGHTER • BETTER </span>
+            </span>
+          </a>
+
+          <!-- DESKTOP NAV -->
+
+          <div class="nav-links d-none d-lg-flex">
+            <a class="nav-link active" href="#home"> Home </a>
+
+            <a class="nav-link" href="#services"> Services </a>
+
+            <a class="nav-link" href="#pricing"> Pricing </a>
+
+            <a class="nav-link" href="#about"> About Us </a>
+
+            <a class="nav-link" href="#reviews"> Reviews </a>
+
+            <a class="nav-link" href="#contact"> Contact </a>
+
+            <a class="nav-link book-btn" href="#booking">
+              <i class="bi bi-calendar-check"></i>
+
+              Book Now
+            </a>
+          </div>
+
+          <!-- MOBILE BUTTON -->
+
+          <button
+            class="navbar-toggler d-lg-none"
+            id="menuButton"
+            type="button"
+            aria-controls="mobileNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU -->
+
+      <div class="mobile-menu d-lg-none" id="mobileNav">
+        <div class="container">
+          <div class="mobile-menu-inner">
+            <a class="mobile-nav-link active" href="#home">
+              <span>Home</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+            <a class="mobile-nav-link" href="#services">
+              <span>Services</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+            <a class="mobile-nav-link" href="#pricing">
+              <span>Pricing</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+            <a class="mobile-nav-link" href="#about">
+              <span>About Us</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+            <a class="mobile-nav-link" href="#reviews">
+              <span>Reviews</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+            <a class="mobile-nav-link" href="#contact">
+              <span>Contact</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+            <div class="mobile-menu-info">
+              <div class="mobile-info-icon">
+                <i class="bi bi-clock-fill"></i>
+              </div>
+
+              <div>
+                <small> Open Every Day </small>
+
+                <strong> 7:00 AM — 10:00 PM </strong>
+              </div>
+            </div>
+
+            <a class="mobile-nav-link book-btn mobile-book" href="#booking">
+              <i class="bi bi-calendar-check"></i>
+
+              Book Your Wash
+
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-label">PREMIUM CAR WASH SERVICES</div>
+
+          <h1>
+            Your Car Deserves
+            <br />
+            the <span>Best Wash</span>
+          </h1>
+
+          <p class="hero-text">
+            We use advanced cleaning technology and premium products to give
+            your car a spotless shine, inside and out.
+          </p>
+
+          <div class="hero-benefits">
+            <div class="benefit">
+              <span class="benefit-icon">
+                <i class="bi bi-leaf"></i>
+              </span>
+
+              Eco-Friendly
+              <br />
+              Products
+            </div>
+
+            <div class="benefit">
+              <span class="benefit-icon">
+                <i class="bi bi-clock"></i>
+              </span>
+
+              Fast &
+              <br />
+              Reliable
+            </div>
+
+            <div class="benefit">
+              <span class="benefit-icon">
+                <i class="bi bi-person-check"></i>
+              </span>
+
+              Professional
+              <br />
+              Team
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#booking" class="primary-btn">
+              <i class="bi bi-calendar-check me-2"></i>
+
+              Book Your Wash
+
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+
+            <a href="#services" class="secondary-btn"> Explore Services </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAR -->
+
+      <div class="hero-visual">
+        <img
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85"
+          class="hero-car"
+          alt="Luxury car"
+          loading="eager"
+        />
+
+        <div class="bubble one"></div>
+        <div class="bubble two"></div>
+        <div class="bubble three"></div>
+        <div class="bubble four"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICE MINI BAR
+    ========================================================= -->
+
+    <section class="container">
+      <div class="service-bar">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <div class="service-mini">
+              <div class="mini-icon">
+                <i class="bi bi-car-front-fill"></i>
+              </div>
+
+              <div>
+                <h6>Exterior Wash</h6>
+
+                <p>Remove dirt & grime</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="service-mini">
+              <div class="mini-icon">
+                <i class="bi bi-wind"></i>
+              </div>
+
+              <div>
+                <h6>Interior Cleaning</h6>
+
+                <p>Fresh & hygienic</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="service-mini">
+              <div class="mini-icon">
+                <i class="bi bi-stars"></i>
+              </div>
+
+              <div>
+                <h6>Wax & Polish</h6>
+
+                <p>Long-lasting shine</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="service-mini">
+              <div class="mini-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+
+              <div>
+                <h6>Tire & Rim Care</h6>
+
+                <p>Look brand new</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICES
+    ========================================================= -->
+
+    <section class="section service-section" id="services">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <div class="section-label">Our Services</div>
+
+          <h2 class="section-title">Complete care for your car.</h2>
+
+          <p class="section-text mx-auto mt-3" style="max-width: 600px">
+            From a quick wash to complete detailing, our professional team makes
+            your car look its absolute best.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="big-service-card">
+              <div class="big-icon">
+                <i class="bi bi-droplet-fill"></i>
+              </div>
+
+              <h4>Exterior Wash</h4>
+
+              <p>
+                Deep exterior cleaning using premium soaps, high-pressure water
+                and soft microfiber technology.
+              </p>
+
+              <a href="#booking" class="learn-more">
+                Book Service
+                <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="big-service-card">
+              <div class="big-icon">
+                <i class="bi bi-house-heart"></i>
+              </div>
+
+              <h4>Interior Cleaning</h4>
+
+              <p>
+                Complete vacuuming, dashboard cleaning, glass cleaning and
+                interior sanitization.
+              </p>
+
+              <a href="#booking" class="learn-more">
+                Book Service
+                <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="big-service-card">
+              <div class="big-icon">
+                <i class="bi bi-stars"></i>
+              </div>
+
+              <h4>Wax & Polish</h4>
+
+              <p>
+                Bring back your vehicle's deep shine with professional polishing
+                and waxing.
+              </p>
+
+              <a href="#booking" class="learn-more">
+                Book Service
+                <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="big-service-card">
+              <div class="big-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+
+              <h4>Ceramic Protection</h4>
+
+              <p>
+                Advanced ceramic protection that helps keep your paint glossy
+                and protected.
+              </p>
+
+              <a href="#booking" class="learn-more">
+                Book Service
+                <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="big-service-card">
+              <div class="big-icon">
+                <i class="bi bi-circle"></i>
+              </div>
+
+              <h4>Tire & Rim Care</h4>
+
+              <p>
+                Deep wheel cleaning, tire shine and professional rim treatment.
+              </p>
+
+              <a href="#booking" class="learn-more">
+                Book Service
+                <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="big-service-card">
+              <div class="big-icon">
+                <i class="bi bi-brush"></i>
+              </div>
+
+              <h4>Full Detailing</h4>
+
+              <p>
+                The ultimate car transformation with complete interior and
+                exterior detailing.
+              </p>
+
+              <a href="#booking" class="learn-more">
+                Book Service
+                <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PRICING
+    ========================================================= -->
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <div class="section-label">Simple Pricing</div>
+
+          <h2 class="section-title">Choose your perfect wash.</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4 reveal">
+            <div class="price-card">
+              <h4>Essential</h4>
+
+              <p class="text-secondary">Quick clean</p>
+
+              <div class="price">
+                $15
+                <small>/ wash</small>
+              </div>
+
+              <ul class="price-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Exterior wash
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  High-pressure rinse
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Soft towel dry
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Tire cleaning
+                </li>
+              </ul>
+
+              <a href="#booking" class="secondary-btn d-block text-center">
+                Choose Essential
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <div class="price-card featured">
+              <span class="popular"> MOST POPULAR </span>
+
+              <h4>Premium</h4>
+
+              <p class="text-secondary">Deep clean & shine</p>
+
+              <div class="price">
+                $29
+                <small>/ wash</small>
+              </div>
+
+              <ul class="price-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Everything in Essential
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Interior vacuum
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Wheel deep clean
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Premium wax
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Tire shine
+                </li>
+              </ul>
+
+              <a href="#booking" class="primary-btn d-block text-center">
+                Choose Premium
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <div class="price-card">
+              <h4>Full Detail</h4>
+
+              <p class="text-secondary">Complete transformation</p>
+
+              <div class="price">
+                $69
+                <small>/ service</small>
+              </div>
+
+              <ul class="price-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Full exterior detail
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Deep interior cleaning
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Paint polish
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Premium wax
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Engine bay cleaning
+                </li>
+              </ul>
+
+              <a href="#booking" class="secondary-btn d-block text-center">
+                Choose Full Detail
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================= -->
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 reveal">
+            <div class="about-image">
+              <img
+                src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=85"
+                alt="Professional car detailing"
+              />
+
+              <div class="experience-card">
+                <h3>8+</h3>
+
+                <span> YEARS OF EXPERIENCE </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 reveal">
+            <div class="section-label">Why SplashWash</div>
+
+            <h2 class="section-title">
+              We don't just wash cars. We restore their shine.
+            </h2>
+
+            <p class="section-text mt-4">
+              Our team combines modern equipment, premium products and
+              professional techniques to deliver a superior car-care experience.
+            </p>
+
+            <div class="mt-4">
+              <div class="about-check">
+                <i class="bi bi-check-circle-fill"></i>
+
+                <div>
+                  <strong> Premium Cleaning Products </strong>
+
+                  <p class="section-text mb-0">
+                    Safe and effective products designed for modern vehicles.
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-check">
+                <i class="bi bi-check-circle-fill"></i>
+
+                <div>
+                  <strong> Professional Team </strong>
+
+                  <p class="section-text mb-0">
+                    Trained specialists who care about every detail.
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-check">
+                <i class="bi bi-check-circle-fill"></i>
+
+                <div>
+                  <strong> Eco-Friendly Process </strong>
+
+                  <p class="section-text mb-0">
+                    Responsible water usage and environmentally conscious
+                    products.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <a href="#booking" class="primary-btn d-inline-block mt-3">
+              Book Your Wash
+
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STATS
+    ========================================================= -->
+
+    <section class="section stats">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-6 col-lg-3 reveal">
+            <div class="stat">
+              <h2>25K+</h2>
+
+              <p>Cars Washed</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3 reveal">
+            <div class="stat">
+              <h2>8+</h2>
+
+              <p>Years Experience</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3 reveal">
+            <div class="stat">
+              <h2>4.9</h2>
+
+              <p>Customer Rating</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3 reveal">
+            <div class="stat">
+              <h2>98%</h2>
+
+              <p>Happy Customers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         BOOKING
+    ========================================================= -->
+
+    <section class="section booking" id="booking">
+      <div class="container">
+        <div class="booking-box reveal">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-5">
+              <div class="section-label">Online Booking</div>
+
+              <h2 class="section-title">Ready to make your car shine?</h2>
+
+              <p class="section-text mt-4">
+                Choose your service, date and preferred time. We'll take care of
+                the rest.
+              </p>
+
+              <div class="mt-4">
+                <div class="about-check">
+                  <i class="bi bi-clock"></i>
+
+                  <div>
+                    <strong> Fast Service </strong>
+
+                    <p class="section-text mb-0">
+                      Most washes completed in 30–60 minutes.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="about-check">
+                  <i class="bi bi-shield-check"></i>
+
+                  <div>
+                    <strong> Quality Guaranteed </strong>
+
+                    <p class="section-text mb-0">
+                      We stand behind every service.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <form id="bookingForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label"> Full Name </label>
+
+                    <input
+                      type="text"
+                      id="customerName"
+                      class="form-control"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label"> Phone Number </label>
+
+                    <input
+                      type="tel"
+                      class="form-control"
+                      placeholder="+1 000 000 0000"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label"> Vehicle Type </label>
+
+                    <select class="form-select" required>
+                      <option value="">Select vehicle</option>
+
+                      <option>Sedan</option>
+                      <option>SUV</option>
+                      <option>Pickup</option>
+                      <option>Sports Car</option>
+                      <option>Van</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label"> Service </label>
+
+                    <select class="form-select" required>
+                      <option value="">Choose service</option>
+
+                      <option>Essential — $15</option>
+
+                      <option>Premium — $29</option>
+
+                      <option>Full Detail — $69</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label"> Date </label>
+
+                    <input
+                      type="date"
+                      id="bookingDate"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label"> Time </label>
+
+                    <select class="form-select" required>
+                      <option value="">Select time</option>
+
+                      <option>08:00 AM</option>
+                      <option>09:00 AM</option>
+                      <option>10:00 AM</option>
+                      <option>11:00 AM</option>
+                      <option>12:00 PM</option>
+                      <option>01:00 PM</option>
+                      <option>02:00 PM</option>
+                      <option>03:00 PM</option>
+                      <option>04:00 PM</option>
+                      <option>05:00 PM</option>
+                      <option>06:00 PM</option>
+                      <option>07:00 PM</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label"> Additional Notes </label>
+
+                    <textarea
+                      class="form-control"
+                      rows="3"
+                      placeholder="Tell us anything we should know..."
+                    ></textarea>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="primary-btn w-100">
+                      <i class="bi bi-calendar-check me-2"></i>
+
+                      Confirm Booking
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         REVIEWS
+    ========================================================= -->
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <div class="section-label">Customer Reviews</div>
+
+          <h2 class="section-title">Clean cars. Happy drivers.</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4 reveal">
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+
+              <p>
+                "Absolutely amazing service. My car looked brand new after the
+                Premium Wash. The team was professional and very friendly."
+              </p>
+
+              <div class="review-user">
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="James Wilson"
+                />
+
+                <div>
+                  <strong> James Wilson </strong>
+
+                  <small> Verified Customer </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+
+              <p>
+                "The booking system is so easy and the results are incredible. I
+                definitely recommend SplashWash."
+              </p>
+
+              <div class="review-user">
+                <img
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Emily Carter"
+                />
+
+                <div>
+                  <strong> Emily Carter </strong>
+
+                  <small> Verified Customer </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+
+              <p>
+                "Fast, affordable and extremely detailed. I've been using
+                SplashWash for two years and have never been disappointed."
+              </p>
+
+              <div class="review-user">
+                <img
+                  src="https://randomuser.me/api/portraits/men/75.jpg"
+                  alt="Daniel Smith"
+                />
+
+                <div>
+                  <strong> Daniel Smith </strong>
+
+                  <small> Premium Member </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================= -->
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5 reveal">
+            <div class="section-label">Contact Us</div>
+
+            <h2 class="section-title">Come get your shine.</h2>
+
+            <p class="section-text mt-3">
+              Visit our location or contact our team if you have any questions.
+            </p>
+
+            <div class="contact-info mt-4">
+              <div class="contact-row">
+                <div class="contact-icon">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+
+                <div>
+                  <strong> Location </strong>
+
+                  <p>250 Main Street, Downtown</p>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-icon">
+                  <i class="bi bi-telephone"></i>
+                </div>
+
+                <div>
+                  <strong> Phone </strong>
+
+                  <p>+1 800 555 0199</p>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-icon">
+                  <i class="bi bi-clock"></i>
+                </div>
+
+                <div>
+                  <strong> Opening Hours </strong>
+
+                  <p>Every Day • 7:00 AM — 10:00 PM</p>
+                </div>
+              </div>
+
+              <div class="contact-row mb-0">
+                <div class="contact-icon">
+                  <i class="bi bi-envelope"></i>
+                </div>
+
+                <div>
+                  <strong> Email </strong>
+
+                  <p>hello@splashwash.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7 reveal">
+            <div
+              style="
+                border-radius: 25px;
+                overflow: hidden;
+                height: 500px;
+                box-shadow: var(--shadow);
+              "
+            >
+              <iframe
+                src="https://www.google.com/maps?q=New+York&output=embed"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                loading="lazy"
+                title="SplashWash location"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <a class="navbar-brand" href="#home">
+              <span class="brand-logo">
+                <i class="bi bi-droplet-fill"></i>
+              </span>
+
+              SplashWash
+            </a>
+
+            <p class="footer-text mt-4">
+              Premium car washing and detailing services designed to keep your
+              vehicle looking its best.
+            </p>
+
+            <div class="socials">
+              <a href="#" class="social">
+                <i class="bi bi-facebook"></i>
+              </a>
+
+              <a href="#" class="social">
+                <i class="bi bi-instagram"></i>
+              </a>
+
+              <a href="#" class="social">
+                <i class="bi bi-tiktok"></i>
+              </a>
+
+              <a href="#" class="social">
+                <i class="bi bi-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <h5 class="footer-title">Company</h5>
+
+            <ul class="footer-links">
+              <li>
+                <a href="#about"> About Us </a>
+              </li>
+
+              <li>
+                <a href="#services"> Services </a>
+              </li>
+
+              <li>
+                <a href="#pricing"> Pricing </a>
+              </li>
+
+              <li>
+                <a href="#contact"> Contact </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <h5 class="footer-title">Services</h5>
+
+            <ul class="footer-links">
+              <li>
+                <a href="#services"> Exterior Wash </a>
+              </li>
+
+              <li>
+                <a href="#services"> Interior Cleaning </a>
+              </li>
+
+              <li>
+                <a href="#services"> Wax & Polish </a>
+              </li>
+
+              <li>
+                <a href="#services"> Full Detailing </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3">
+            <h5 class="footer-title">Opening Hours</h5>
+
+            <ul class="footer-links">
+              <li>
+                <a href="#contact"> Monday — 7AM–10PM </a>
+              </li>
+
+              <li>
+                <a href="#contact"> Tuesday — 7AM–10PM </a>
+              </li>
+
+              <li>
+                <a href="#contact"> Wednesday — 7AM–10PM </a>
+              </li>
+
+              <li>
+                <a href="#contact"> Thursday — 7AM–10PM </a>
+              </li>
+
+              <li>
+                <a href="#contact"> Friday — 7AM–10PM </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright d-flex justify-content-between flex-wrap gap-3">
+          <span> © 2026 SplashWash. All rights reserved. </span>
+
+          <span> Privacy Policy • Terms of Service </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         BOOTSTRAP JS
+    ========================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      /* =========================================================
+         NAVBAR SCROLL EFFECT
+      ========================================================= */
+
+      const navbar = document.getElementById("navbar");
+
+      function updateNavbar() {
+        if (window.scrollY > 35) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+
+      window.addEventListener("scroll", updateNavbar, { passive: true });
+
+      updateNavbar();
+
+      /* =========================================================
+         MOBILE MENU
+      ========================================================= */
+
+      const menuButton = document.getElementById("menuButton");
+
+      const mobileNav = document.getElementById("mobileNav");
+
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+      function closeMobileMenu() {
+        mobileNav.classList.remove("open");
+
+        menuButton.classList.remove("is-open");
+
+        menuButton.setAttribute("aria-expanded", "false");
+
+        document.body.classList.remove("menu-open");
+      }
+
+      menuButton.addEventListener("click", function () {
+        const isOpen = mobileNav.classList.toggle("open");
+
+        menuButton.classList.toggle("is-open", isOpen);
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+
+        document.body.classList.toggle("menu-open", isOpen);
+      });
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          closeMobileMenu();
+        });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (
+          mobileNav.classList.contains("open") &&
+          !mobileNav.contains(event.target) &&
+          !menuButton.contains(event.target)
+        ) {
+          closeMobileMenu();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeMobileMenu();
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 992) {
+          closeMobileMenu();
+        }
+      });
+
+      /* =========================================================
+         ACTIVE NAVIGATION
+      ========================================================= */
+
+      const sections = document.querySelectorAll("section[id]");
+
+      const desktopLinks = document.querySelectorAll(
+        ".nav-links .nav-link:not(.book-btn)",
+      );
+
+      const allNavigationLinks = document.querySelectorAll(
+        ".nav-link[href^='#'], .mobile-nav-link[href^='#']",
+      );
+
+      function setActiveLink(id) {
+        allNavigationLinks.forEach(function (link) {
+          const target = link.getAttribute("href");
+
+          if (target === "#" + id) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+
+      const sectionObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActiveLink(entry.target.id);
+            }
+          });
+        },
+        {
+          rootMargin: "-35% 0px -55% 0px",
+          threshold: 0,
+        },
+      );
+
+      sections.forEach(function (section) {
+        sectionObserver.observe(section);
+      });
+
+      /* =========================================================
+         SCROLL REVEAL
+      ========================================================= */
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+        },
+      );
+
+      revealElements.forEach(function (element) {
+        revealObserver.observe(element);
+      });
+
+      /* =========================================================
+         MINIMUM BOOKING DATE
+      ========================================================= */
+
+      const bookingDate = document.getElementById("bookingDate");
+
+      if (bookingDate) {
+        const today = new Date().toISOString().split("T")[0];
+
+        bookingDate.min = today;
+      }
+
+      /* =========================================================
+         BOOKING FORM
+      ========================================================= */
+
+      const bookingForm = document.getElementById("bookingForm");
+
+      bookingForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("customerName").value.trim();
+
+        alert(
+          "Thank you, " +
+            name +
+            "! Your SplashWash booking has been confirmed.",
+        );
+
+        bookingForm.reset();
+      });
+    </script>
+  </body>
+</html>

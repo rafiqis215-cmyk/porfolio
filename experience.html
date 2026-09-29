@@ -1,0 +1,2321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Experience | Ismail Rafiqi</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #050505;
+        --bg-soft: #080808;
+        --panel: #101010;
+        --panel-light: #151515;
+
+        --text: #f5f5f5;
+        --muted: #a1a1aa;
+
+        --line: rgba(255, 255, 255, 0.08);
+
+        --primary: #9b6cff;
+        --secondary: #7fe7d3;
+
+        --purple-soft: rgba(155, 108, 255, 0.12);
+        --green-soft: rgba(127, 231, 211, 0.08);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+
+        background:
+          radial-gradient(
+            circle at 15% 10%,
+            rgba(155, 108, 255, 0.12),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(127, 231, 211, 0.07),
+            transparent 25%
+          ),
+          var(--bg);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.2;
+
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+
+        background-size: 70px 70px;
+
+        mask-image: linear-gradient(to bottom, black, transparent 85%);
+
+        z-index: -1;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      /* ==================================================
+         PAGE LOADER
+      ================================================== */
+
+      #pageLoader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #050505;
+
+        transition:
+          opacity 0.6s ease,
+          visibility 0.6s ease;
+      }
+
+      #pageLoader.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-content {
+        text-align: center;
+      }
+
+      .loader-logo {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -3px;
+
+        background: linear-gradient(
+          135deg,
+          #ffffff,
+          var(--primary),
+          var(--secondary)
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+
+        margin-bottom: 20px;
+      }
+
+      .loader-line {
+        width: 120px;
+        height: 2px;
+        overflow: hidden;
+        margin: auto;
+
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .loader-line span {
+        display: block;
+        width: 50%;
+        height: 100%;
+
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+
+        animation: loading 1.2s infinite ease-in-out;
+      }
+
+      @keyframes loading {
+        0% {
+          transform: translateX(-100%);
+        }
+
+        50% {
+          transform: translateX(100%);
+        }
+
+        100% {
+          transform: translateX(200%);
+        }
+      }
+
+      /* ==================================================
+         NAVBAR
+      ================================================== */
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        width: 100%;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+        background: rgba(5, 5, 5, 0.76);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
+      .nav-container {
+        min-height: 76px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        position: relative;
+
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -1.5px;
+
+        color: #fff;
+
+        transition: 0.35s ease;
+      }
+
+      .logo::after {
+        content: "";
+
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+
+        width: 0;
+        height: 2px;
+
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+
+        transition: width 0.35s ease;
+      }
+
+      .logo:hover {
+        transform: rotate(-2deg);
+        text-shadow: 0 0 25px rgba(155, 108, 255, 0.6);
+      }
+
+      .logo:hover::after {
+        width: 100%;
+      }
+
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .desktop-nav a {
+        position: relative;
+
+        padding: 10px 14px;
+
+        color: #a1a1aa;
+
+        font-size: 13px;
+        font-weight: 600;
+
+        transition: 0.3s ease;
+      }
+
+      .desktop-nav a::after {
+        content: "";
+
+        position: absolute;
+        left: 50%;
+        bottom: 3px;
+
+        width: 0;
+        height: 2px;
+
+        border-radius: 10px;
+
+        background: var(--primary);
+
+        transform: translateX(-50%);
+
+        transition: width 0.3s ease;
+      }
+
+      .desktop-nav a:hover,
+      .desktop-nav a.active {
+        color: #fff;
+      }
+
+      .desktop-nav a:hover::after,
+      .desktop-nav a.active::after {
+        width: 18px;
+      }
+
+      /* ==================================================
+         MOBILE NAV BUTTON
+      ================================================== */
+
+      .menu-btn {
+        width: 46px;
+        height: 46px;
+
+        display: none;
+
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+
+        background: rgba(255, 255, 255, 0.045);
+
+        cursor: pointer;
+
+        transition: 0.35s ease;
+      }
+
+      .menu-btn:hover {
+        border-color: rgba(155, 108, 255, 0.5);
+
+        background: rgba(155, 108, 255, 0.08);
+
+        box-shadow: 0 0 25px rgba(155, 108, 255, 0.12);
+      }
+
+      .menu-lines {
+        width: 20px;
+        height: 16px;
+
+        position: relative;
+      }
+
+      .menu-lines span {
+        position: absolute;
+        left: 0;
+
+        width: 100%;
+        height: 2px;
+
+        border-radius: 10px;
+
+        background: #fff;
+
+        transition: 0.35s ease;
+      }
+
+      .menu-lines span:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-lines span:nth-child(2) {
+        top: 7px;
+      }
+
+      .menu-lines span:nth-child(3) {
+        top: 14px;
+      }
+
+      .menu-btn.open .menu-lines span:nth-child(1) {
+        top: 7px;
+        transform: rotate(45deg);
+      }
+
+      .menu-btn.open .menu-lines span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(10px);
+      }
+
+      .menu-btn.open .menu-lines span:nth-child(3) {
+        top: 7px;
+        transform: rotate(-45deg);
+      }
+
+      /* ==================================================
+         MOBILE MENU
+      ================================================== */
+
+      .mobile-menu {
+        position: fixed;
+
+        top: 86px;
+        left: 15px;
+        right: 15px;
+
+        z-index: 999;
+
+        padding: 14px;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(20, 20, 20, 0.96),
+          rgba(8, 8, 8, 0.96)
+        );
+
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, 0.6),
+          inset 0 1px rgba(255, 255, 255, 0.04);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-15px) scale(0.97);
+
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      .mobile-menu::before {
+        content: "";
+
+        position: absolute;
+        top: -1px;
+        left: 15%;
+
+        width: 70%;
+        height: 1px;
+
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          var(--secondary),
+          transparent
+        );
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0) scale(1);
+      }
+
+      .mobile-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 15px 16px;
+
+        margin-bottom: 5px;
+
+        border-radius: 14px;
+
+        color: #a1a1aa;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        transform: translateY(-8px);
+        opacity: 0;
+
+        transition:
+          color 0.3s ease,
+          background 0.3s ease,
+          transform 0.35s ease,
+          opacity 0.35s ease;
+      }
+
+      .mobile-menu.open a {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu.open a:nth-child(1) {
+        transition-delay: 0.04s;
+      }
+
+      .mobile-menu.open a:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+
+      .mobile-menu.open a:nth-child(3) {
+        transition-delay: 0.12s;
+      }
+
+      .mobile-menu.open a:nth-child(4) {
+        transition-delay: 0.16s;
+      }
+
+      .mobile-menu.open a:nth-child(5) {
+        transition-delay: 0.2s;
+      }
+
+      .mobile-menu.open a:nth-child(6) {
+        transition-delay: 0.24s;
+      }
+
+      .mobile-menu a:hover,
+      .mobile-menu a.active {
+        color: #fff;
+
+        background: linear-gradient(
+          90deg,
+          rgba(155, 108, 255, 0.13),
+          rgba(127, 231, 211, 0.04)
+        );
+      }
+
+      .mobile-menu a i {
+        color: var(--primary);
+
+        opacity: 0;
+
+        transform: translateX(-8px);
+
+        transition: 0.3s ease;
+      }
+
+      .mobile-menu a:hover i,
+      .mobile-menu a.active i {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* ==================================================
+         HERO
+      ================================================== */
+
+      .experience-hero {
+        position: relative;
+
+        padding: 100px 0 80px;
+
+        text-align: center;
+
+        overflow: hidden;
+      }
+
+      .hero-glow {
+        position: absolute;
+
+        width: 500px;
+        height: 500px;
+
+        top: -250px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        border-radius: 50%;
+
+        background: rgba(155, 108, 255, 0.13);
+
+        filter: blur(100px);
+
+        pointer-events: none;
+      }
+
+      .hero-eyebrow {
+        position: relative;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+
+        margin-bottom: 22px;
+
+        padding: 8px 14px;
+
+        border: 1px solid rgba(155, 108, 255, 0.2);
+        border-radius: 100px;
+
+        background: rgba(155, 108, 255, 0.07);
+
+        color: #c7b4ff;
+
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+      }
+
+      .hero-eyebrow span {
+        width: 6px;
+        height: 6px;
+
+        border-radius: 50%;
+
+        background: var(--secondary);
+
+        box-shadow:
+          0 0 0 4px rgba(127, 231, 211, 0.08),
+          0 0 15px var(--secondary);
+      }
+
+      .experience-hero h1 {
+        position: relative;
+
+        max-width: 850px;
+
+        margin: 0 auto;
+
+        font-size: clamp(42px, 8vw, 82px);
+
+        font-weight: 900;
+
+        line-height: 0.98;
+
+        letter-spacing: -4px;
+      }
+
+      .experience-hero h1 .gradient {
+        background: linear-gradient(
+          135deg,
+          #ffffff 20%,
+          #b99aff 55%,
+          #7fe7d3 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+      }
+
+      .hero-description {
+        position: relative;
+
+        max-width: 650px;
+
+        margin: 28px auto 0;
+
+        color: var(--muted);
+
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      /* ==================================================
+         EXPERIENCE SECTION
+      ================================================== */
+
+      .experience-section {
+        position: relative;
+
+        padding: 30px 0 100px;
+      }
+
+      .section-heading {
+        margin-bottom: 55px;
+      }
+
+      .section-number {
+        display: block;
+
+        margin-bottom: 10px;
+
+        color: var(--primary);
+
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 12px;
+
+        font-size: clamp(30px, 5vw, 50px);
+
+        font-weight: 800;
+
+        letter-spacing: -2px;
+      }
+
+      .section-heading p {
+        max-width: 650px;
+
+        margin: 0;
+
+        color: var(--muted);
+
+        line-height: 1.8;
+        font-size: 14px;
+      }
+
+      /* ==================================================
+         TIMELINE
+      ================================================== */
+
+      .timeline {
+        position: relative;
+
+        max-width: 1000px;
+
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        bottom: 0;
+
+        left: 25px;
+
+        width: 1px;
+
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(155, 108, 255, 0.6) 8%,
+          rgba(155, 108, 255, 0.25) 90%,
+          transparent
+        );
+      }
+
+      .experience-item {
+        position: relative;
+
+        padding-left: 65px;
+
+        margin-bottom: 65px;
+      }
+
+      .experience-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-dot {
+        position: absolute;
+
+        top: 30px;
+        left: 10px;
+
+        width: 31px;
+        height: 31px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid rgba(155, 108, 255, 0.5);
+
+        border-radius: 50%;
+
+        background: #090909;
+
+        box-shadow:
+          0 0 0 7px rgba(155, 108, 255, 0.05),
+          0 0 25px rgba(155, 108, 255, 0.18);
+
+        z-index: 2;
+      }
+
+      .timeline-dot::before {
+        content: "";
+
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+
+        box-shadow: 0 0 15px var(--primary);
+      }
+
+      .experience-card {
+        position: relative;
+
+        padding: 30px;
+
+        border: 1px solid var(--line);
+
+        border-radius: 24px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.015)
+        );
+
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, 0.22),
+          inset 0 1px rgba(255, 255, 255, 0.025);
+
+        overflow: hidden;
+
+        transition:
+          transform 0.45s ease,
+          border-color 0.45s ease,
+          box-shadow 0.45s ease;
+      }
+
+      .experience-card::before {
+        content: "";
+
+        position: absolute;
+
+        top: -120px;
+        right: -100px;
+
+        width: 240px;
+        height: 240px;
+
+        border-radius: 50%;
+
+        background: rgba(155, 108, 255, 0.09);
+
+        filter: blur(50px);
+
+        transition: 0.5s ease;
+      }
+
+      .experience-card:hover {
+        transform: translateY(-8px);
+
+        border-color: rgba(155, 108, 255, 0.28);
+
+        box-shadow:
+          0 35px 90px rgba(0, 0, 0, 0.35),
+          0 0 50px rgba(155, 108, 255, 0.07);
+      }
+
+      .experience-card:hover::before {
+        transform: scale(1.3);
+        background: rgba(155, 108, 255, 0.13);
+      }
+
+      .experience-top {
+        position: relative;
+        z-index: 1;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        gap: 25px;
+
+        margin-bottom: 25px;
+      }
+
+      .company-info {
+        display: flex;
+        align-items: center;
+
+        gap: 16px;
+      }
+
+      .company-icon {
+        width: 58px;
+        height: 58px;
+
+        flex: 0 0 58px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid rgba(155, 108, 255, 0.2);
+
+        border-radius: 17px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(155, 108, 255, 0.16),
+          rgba(127, 231, 211, 0.05)
+        );
+
+        color: var(--primary);
+
+        font-size: 23px;
+
+        box-shadow:
+          inset 0 1px rgba(255, 255, 255, 0.05),
+          0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .company-info h3 {
+        margin-bottom: 6px;
+
+        font-size: 21px;
+        font-weight: 800;
+
+        letter-spacing: -0.5px;
+      }
+
+      .company-info p {
+        margin: 0;
+
+        color: var(--muted);
+
+        font-size: 13px;
+      }
+
+      .experience-date {
+        padding: 8px 12px;
+
+        border: 1px solid rgba(255, 255, 255, 0.07);
+
+        border-radius: 100px;
+
+        background: rgba(255, 255, 255, 0.035);
+
+        color: #b8b8c0;
+
+        font-size: 10px;
+        font-weight: 700;
+
+        white-space: nowrap;
+
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .experience-role {
+        position: relative;
+        z-index: 1;
+
+        margin-bottom: 12px;
+
+        color: #ffffff;
+
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .experience-description {
+        position: relative;
+        z-index: 1;
+
+        margin-bottom: 25px;
+
+        color: var(--muted);
+
+        font-size: 13px;
+
+        line-height: 1.85;
+      }
+
+      .experience-points {
+        position: relative;
+        z-index: 1;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+
+        margin-bottom: 25px;
+      }
+
+      .experience-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+
+        padding: 12px;
+
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        border-radius: 12px;
+
+        background: rgba(255, 255, 255, 0.025);
+
+        color: #c5c5ca;
+
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .experience-point i {
+        flex-shrink: 0;
+
+        margin-top: 2px;
+
+        color: var(--secondary);
+
+        font-size: 13px;
+      }
+
+      .technology-list {
+        position: relative;
+        z-index: 1;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 8px;
+      }
+
+      .technology {
+        padding: 7px 11px;
+
+        border: 1px solid rgba(155, 108, 255, 0.14);
+
+        border-radius: 100px;
+
+        background: rgba(155, 108, 255, 0.06);
+
+        color: #bda8ff;
+
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      /* ==================================================
+         EXPERIENCE STATS
+      ================================================== */
+
+      .stats-section {
+        padding: 20px 0 100px;
+      }
+
+      .stats-wrapper {
+        padding: 30px;
+
+        border: 1px solid var(--line);
+
+        border-radius: 26px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(255, 255, 255, 0.012)
+        );
+
+        box-shadow:
+          inset 0 1px rgba(255, 255, 255, 0.025),
+          0 30px 80px rgba(0, 0, 0, 0.22);
+      }
+
+      .stat {
+        text-align: center;
+
+        padding: 20px 10px;
+      }
+
+      .stat-number {
+        margin-bottom: 8px;
+
+        font-size: clamp(30px, 5vw, 45px);
+
+        font-weight: 900;
+
+        letter-spacing: -2px;
+
+        background: linear-gradient(
+          135deg,
+          #fff,
+          var(--primary),
+          var(--secondary)
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+      }
+
+      .stat-label {
+        color: var(--muted);
+
+        font-size: 11px;
+        font-weight: 600;
+
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* ==================================================
+         WHAT I LEARNED
+      ================================================== */
+
+      .learning-section {
+        padding: 0 0 100px;
+      }
+
+      .learning-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 18px;
+      }
+
+      .learning-card {
+        position: relative;
+
+        min-height: 230px;
+
+        padding: 27px;
+
+        border: 1px solid var(--line);
+
+        border-radius: 22px;
+
+        background: rgba(255, 255, 255, 0.025);
+
+        overflow: hidden;
+
+        transition: 0.4s ease;
+      }
+
+      .learning-card::after {
+        content: "";
+
+        position: absolute;
+
+        right: -50px;
+        bottom: -50px;
+
+        width: 130px;
+        height: 130px;
+
+        border-radius: 50%;
+
+        background: rgba(127, 231, 211, 0.06);
+
+        filter: blur(25px);
+
+        transition: 0.4s ease;
+      }
+
+      .learning-card:hover {
+        transform: translateY(-7px);
+
+        border-color: rgba(155, 108, 255, 0.25);
+
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .learning-card:hover::after {
+        transform: scale(1.5);
+      }
+
+      .learning-icon {
+        width: 50px;
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 22px;
+
+        border-radius: 15px;
+
+        background: rgba(155, 108, 255, 0.1);
+
+        color: var(--primary);
+
+        font-size: 20px;
+      }
+
+      .learning-card h3 {
+        margin-bottom: 10px;
+
+        font-size: 17px;
+        font-weight: 750;
+      }
+
+      .learning-card p {
+        margin: 0;
+
+        color: var(--muted);
+
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      /* ==================================================
+         CTA
+      ================================================== */
+
+      .cta-section {
+        padding: 20px 0 100px;
+      }
+
+      .cta-box {
+        position: relative;
+
+        padding: 65px 35px;
+
+        border: 1px solid rgba(155, 108, 255, 0.16);
+
+        border-radius: 30px;
+
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(155, 108, 255, 0.13),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 80%,
+            rgba(127, 231, 211, 0.07),
+            transparent 30%
+          ),
+          rgba(255, 255, 255, 0.025);
+
+        text-align: center;
+
+        overflow: hidden;
+      }
+
+      .cta-box::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 15%;
+
+        width: 70%;
+        height: 1px;
+
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          var(--secondary),
+          transparent
+        );
+      }
+
+      .cta-box h2 {
+        position: relative;
+
+        margin-bottom: 15px;
+
+        font-size: clamp(30px, 6vw, 50px);
+
+        font-weight: 850;
+
+        letter-spacing: -2px;
+      }
+
+      .cta-box h2 span {
+        color: var(--primary);
+      }
+
+      .cta-box p {
+        position: relative;
+
+        max-width: 580px;
+
+        margin: 0 auto 30px;
+
+        color: var(--muted);
+
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .cta-button {
+        position: relative;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        padding: 14px 21px;
+
+        border: 1px solid rgba(155, 108, 255, 0.35);
+
+        border-radius: 14px;
+
+        background: linear-gradient(
+          135deg,
+          rgba(155, 108, 255, 0.16),
+          rgba(127, 231, 211, 0.06)
+        );
+
+        color: #fff;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        transition: 0.35s ease;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+
+        border-color: rgba(155, 108, 255, 0.65);
+
+        box-shadow:
+          0 15px 40px rgba(155, 108, 255, 0.13),
+          0 0 30px rgba(155, 108, 255, 0.08);
+
+        color: #fff;
+      }
+
+      .cta-button i {
+        transition: 0.3s ease;
+      }
+
+      .cta-button:hover i {
+        transform: translateX(5px);
+      }
+
+      /* ==================================================
+         FOOTER
+      ================================================== */
+
+      footer {
+        padding: 30px 0 35px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 25px;
+      }
+
+      .footer-brand {
+        color: #77777f;
+
+        font-size: 11px;
+      }
+
+      .footer-brand strong {
+        color: #fff;
+      }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .social-link {
+        width: 38px;
+        height: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid rgba(255, 255, 255, 0.07);
+
+        border-radius: 12px;
+
+        background: rgba(255, 255, 255, 0.025);
+
+        color: #85858d;
+
+        font-size: 14px;
+
+        transition: 0.3s ease;
+      }
+
+      .social-link:hover {
+        color: #fff;
+
+        border-color: rgba(155, 108, 255, 0.4);
+
+        background: rgba(155, 108, 255, 0.08);
+
+        transform: translateY(-3px);
+      }
+
+      /* ==================================================
+         REVEAL ANIMATION
+      ================================================== */
+
+      .reveal {
+        opacity: 0;
+
+        transform: translateY(25px);
+
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+      /* ==================================================
+         1100px
+      ================================================== */
+
+      @media (max-width: 1100px) {
+        .experience-hero {
+          padding-top: 90px;
+        }
+
+        .learning-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* ==================================================
+         991.98px
+      ================================================== */
+
+      @media (max-width: 991.98px) {
+        .desktop-nav {
+          display: none;
+        }
+
+        .menu-btn {
+          display: flex;
+        }
+
+        .nav-container {
+          min-height: 70px;
+        }
+
+        .experience-hero {
+          padding: 85px 0 70px;
+        }
+
+        .experience-hero h1 {
+          letter-spacing: -3px;
+        }
+
+        .experience-section,
+        .learning-section,
+        .stats-section,
+        .cta-section {
+          padding-bottom: 80px;
+        }
+      }
+
+      /* ==================================================
+         767px
+      ================================================== */
+
+      @media (max-width: 767px) {
+        .experience-hero {
+          padding: 75px 0 60px;
+        }
+
+        .hero-description {
+          font-size: 13px;
+
+          padding: 0 15px;
+        }
+
+        .experience-item {
+          padding-left: 48px;
+
+          margin-bottom: 45px;
+        }
+
+        .timeline::before {
+          left: 18px;
+        }
+
+        .timeline-dot {
+          left: 3px;
+
+          width: 31px;
+          height: 31px;
+        }
+
+        .experience-card {
+          padding: 22px;
+
+          border-radius: 20px;
+        }
+
+        .experience-top {
+          flex-direction: column;
+
+          gap: 15px;
+        }
+
+        .experience-date {
+          align-self: flex-start;
+        }
+
+        .company-info h3 {
+          font-size: 18px;
+        }
+
+        .experience-points {
+          grid-template-columns: 1fr;
+        }
+
+        .learning-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-wrapper {
+          padding: 20px 10px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+
+          text-align: center;
+        }
+      }
+
+      /* ==================================================
+         520px
+      ================================================== */
+
+      @media (max-width: 520px) {
+        .container {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .experience-hero {
+          padding: 65px 0 55px;
+        }
+
+        .hero-eyebrow {
+          font-size: 9px;
+
+          padding: 7px 11px;
+        }
+
+        .experience-hero h1 {
+          font-size: 43px;
+
+          letter-spacing: -2.5px;
+        }
+
+        .section-heading h2 {
+          font-size: 34px;
+
+          letter-spacing: -1.5px;
+        }
+
+        .experience-item {
+          padding-left: 39px;
+        }
+
+        .timeline::before {
+          left: 13px;
+        }
+
+        .timeline-dot {
+          left: 0;
+
+          width: 28px;
+          height: 28px;
+        }
+
+        .experience-card {
+          padding: 19px;
+
+          border-radius: 18px;
+        }
+
+        .company-info {
+          gap: 12px;
+        }
+
+        .company-icon {
+          width: 50px;
+          height: 50px;
+
+          flex-basis: 50px;
+
+          border-radius: 14px;
+        }
+
+        .company-info h3 {
+          font-size: 16px;
+        }
+
+        .company-info p {
+          font-size: 11px;
+        }
+
+        .experience-role {
+          font-size: 14px;
+        }
+
+        .experience-description {
+          font-size: 12px;
+        }
+
+        .experience-point {
+          font-size: 11px;
+        }
+
+        .technology {
+          font-size: 9px;
+        }
+
+        .cta-box {
+          padding: 45px 20px;
+
+          border-radius: 22px;
+        }
+
+        .cta-box h2 {
+          font-size: 33px;
+        }
+      }
+
+      /* ==================================================
+         360px
+      ================================================== */
+
+      @media (max-width: 360px) {
+        .experience-hero h1 {
+          font-size: 37px;
+        }
+
+        .experience-item {
+          padding-left: 34px;
+        }
+
+        .experience-card {
+          padding: 16px;
+        }
+
+        .company-icon {
+          width: 45px;
+          height: 45px;
+
+          flex-basis: 45px;
+        }
+
+        .company-info h3 {
+          font-size: 14px;
+        }
+
+        .company-info p {
+          font-size: 10px;
+        }
+
+        .experience-date {
+          font-size: 8px;
+        }
+
+        .mobile-menu {
+          left: 10px;
+          right: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ==================================================
+         PAGE LOADER
+    ================================================== -->
+
+    <div id="pageLoader">
+      <div class="loader-content">
+        <div class="loader-logo">ISR.</div>
+
+        <div class="loader-line">
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================
+         NAVBAR
+    ================================================== -->
+
+    <header class="topbar">
+      <div class="container">
+        <div class="nav-container">
+          <a href="landing page.html" class="logo"> ISR. </a>
+
+          <!-- Desktop Navigation -->
+
+          <nav class="desktop-nav">
+            <a href="landing page.html"> Home </a>
+
+            <a href="about.html"> About </a>
+
+            <a href="skills.html"> Skills </a>
+
+            <a href="experience.html" class="active"> Experience </a>
+
+            <a href="projects.html"> Projects </a>
+
+            <a href="testimonials.html"> Testimonials </a>
+
+            <a href="contact.html"> Contact </a>
+          </nav>
+
+          <!-- Mobile Button -->
+
+          <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+          >
+            <span class="menu-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================================================
+         MOBILE MENU
+    ================================================== -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="landing page.html">
+        <span>01 &nbsp; Home</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a href="about.html">
+        <span>02 &nbsp; About</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a href="skills.html">
+        <span>03 &nbsp; Skills</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a href="experience.html" class="active">
+        <span>04 &nbsp; Experience</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a href="projects.html">
+        <span>05 &nbsp; Projects</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a href="testimonials.html">
+        <span>06 &nbsp; Testimonials</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a href="contact.html">
+        <span>07 &nbsp; Contact</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
+
+    <main>
+      <section class="experience-hero">
+        <div class="hero-glow"></div>
+
+        <div class="container">
+          <div class="hero-eyebrow reveal">
+            <span></span>
+            My Experience
+          </div>
+
+          <h1 class="reveal">
+            Building Experience,
+            <span class="gradient">One Opportunity at a Time.</span>
+          </h1>
+
+          <p class="hero-description reveal">
+            A journey through the companies, internships, projects, and
+            opportunities that have helped me grow as a software engineering
+            student and front-end developer.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           EXPERIENCE TIMELINE
+      ================================================== -->
+
+      <section class="experience-section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-number"> 01 — Career Journey </span>
+
+            <h2>
+              Where I've
+              <span style="color: var(--primary)"> Worked </span>
+            </h2>
+
+            <p>
+              My professional journey includes practical company experience and
+              internship experience that have helped me strengthen my
+              development and problem-solving skills.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <!-- ==================================================
+                 YAQEEN TECHNOLOGY
+            ================================================== -->
+
+            <article class="experience-item reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="experience-card">
+                <div class="experience-top">
+                  <div class="company-info">
+                    <div class="company-icon">
+                      <i class="bi bi-code-slash"></i>
+                    </div>
+
+                    <div>
+                      <h3>Yaqeen Technology</h3>
+
+                      <p>Technology & Development</p>
+                    </div>
+                  </div>
+
+                  <div class="experience-date">Professional Experience</div>
+                </div>
+
+                <div class="experience-role">
+                  Software / Front-End Development Experience
+                </div>
+
+                <p class="experience-description">
+                  My experience with Yaqeen Technology gave me practical
+                  exposure to a professional technology environment and helped
+                  me develop my skills in software and front-end development.
+                </p>
+
+                <div class="experience-points">
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Practical experience in a professional technology
+                      environment.
+                    </span>
+                  </div>
+
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Continued development of front-end and software
+                      engineering skills.
+                    </span>
+                  </div>
+
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Experience working with modern development workflows.
+                    </span>
+                  </div>
+
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Improved professional and problem-solving skills.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="technology-list">
+                  <span class="technology"> HTML </span>
+
+                  <span class="technology"> CSS </span>
+
+                  <span class="technology"> JavaScript </span>
+
+                  <span class="technology"> Bootstrap </span>
+
+                  <span class="technology"> UI / UX </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- ==================================================
+                 UPSKILL
+            ================================================== -->
+
+            <article class="experience-item reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="experience-card">
+                <div class="experience-top">
+                  <div class="company-info">
+                    <div class="company-icon">
+                      <i class="bi bi-mortarboard-fill"></i>
+                    </div>
+
+                    <div>
+                      <h3>Upskill</h3>
+
+                      <p>Training & Development</p>
+                    </div>
+                  </div>
+
+                  <div class="experience-date">Internship</div>
+                </div>
+
+                <div class="experience-role">Front-End Developer Intern</div>
+
+                <p class="experience-description">
+                  During my internship at Upskill, I strengthened my practical
+                  front-end development knowledge and gained experience applying
+                  web development concepts to real projects and tasks.
+                </p>
+
+                <div class="experience-points">
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Developed and improved front-end development skills.
+                    </span>
+                  </div>
+
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span> Practiced responsive website development. </span>
+                  </div>
+
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Worked with modern web development concepts and tools.
+                    </span>
+                  </div>
+
+                  <div class="experience-point">
+                    <i class="bi bi-check2-circle"></i>
+
+                    <span>
+                      Improved ability to build clean, user-focused interfaces.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="technology-list">
+                  <span class="technology"> HTML </span>
+
+                  <span class="technology"> CSS </span>
+
+                  <span class="technology"> JavaScript </span>
+
+                  <span class="technology"> Bootstrap </span>
+
+                  <span class="technology"> Figma </span>
+
+                  <span class="technology"> Git </span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           STATS
+      ================================================== -->
+
+      <section class="stats-section">
+        <div class="container">
+          <div class="stats-wrapper reveal">
+            <div class="row g-0">
+              <div class="col-6 col-md-3">
+                <div class="stat">
+                  <div class="stat-number">02</div>
+
+                  <div class="stat-label">Companies</div>
+                </div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <div class="stat">
+                  <div class="stat-number">01+</div>
+
+                  <div class="stat-label">Year Experience</div>
+                </div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <div class="stat">
+                  <div class="stat-number">10+</div>
+
+                  <div class="stat-label">Technologies</div>
+                </div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <div class="stat">
+                  <div class="stat-number">100%</div>
+
+                  <div class="stat-label">Growth Mindset</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           WHAT EXPERIENCE TAUGHT ME
+      ================================================== -->
+
+      <section class="learning-section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-number"> 02 — What I Learned </span>
+
+            <h2>
+              Experience That
+              <span style="color: var(--secondary)"> Builds Me </span>
+            </h2>
+
+            <p>
+              Every professional opportunity has helped me improve not only as a
+              developer, but also as someone who can communicate, learn, adapt,
+              and solve problems.
+            </p>
+          </div>
+
+          <div class="learning-grid">
+            <div class="learning-card reveal">
+              <div class="learning-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+
+              <h3>Practical Development</h3>
+
+              <p>
+                Turning development concepts into practical websites and user
+                interfaces helped me improve my understanding of front-end
+                development.
+              </p>
+            </div>
+
+            <div class="learning-card reveal">
+              <div class="learning-icon">
+                <i class="bi bi-phone"></i>
+              </div>
+
+              <h3>Responsive Design</h3>
+
+              <p>
+                Building interfaces for different screen sizes improved my
+                understanding of responsive and mobile-first design.
+              </p>
+            </div>
+
+            <div class="learning-card reveal">
+              <div class="learning-icon">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+
+              <h3>Problem Solving</h3>
+
+              <p>
+                Working through development challenges has helped me become more
+                comfortable researching, testing, debugging, and improving
+                solutions.
+              </p>
+            </div>
+
+            <div class="learning-card reveal">
+              <div class="learning-icon">
+                <i class="bi bi-palette"></i>
+              </div>
+
+              <h3>UI / UX Thinking</h3>
+
+              <p>
+                My development experience has also helped me understand how
+                design decisions affect usability and the overall user
+                experience.
+              </p>
+            </div>
+
+            <div class="learning-card reveal">
+              <div class="learning-icon">
+                <i class="bi bi-git"></i>
+              </div>
+
+              <h3>Development Workflow</h3>
+
+              <p>
+                Using development tools and version-control workflows has helped
+                me become more organized while working on projects.
+              </p>
+            </div>
+
+            <div class="learning-card reveal">
+              <div class="learning-icon">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+
+              <h3>Continuous Growth</h3>
+
+              <p>
+                Each experience has encouraged me to continue learning new
+                technologies and improving my software engineering skills.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           CTA
+      ================================================== -->
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-box reveal">
+            <h2>
+              Let's Build Something
+              <span>Great.</span>
+            </h2>
+
+            <p>
+              I'm always interested in new opportunities, collaborations, and
+              projects where I can use my front-end development and software
+              engineering skills.
+            </p>
+
+            <a href="contact.html" class="cta-button">
+              Let's Work Together
+
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            © 2026
+            <strong>Ismail Rafiqi</strong>. All rights reserved.
+          </div>
+
+          <div class="socials">
+            <!-- Instagram -->
+
+            <a
+              href="https://www.instagram.com/_.3xile__/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Instagram"
+            >
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <!-- LinkedIn -->
+
+            <a
+              href="https://www.linkedin.com/in/ismail-rafiqi-502160397/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="LinkedIn"
+            >
+              <i class="bi bi-linkedin"></i>
+            </a>
+
+            <!-- Facebook -->
+
+            <a
+              href="https://www.facebook.com/sharer/sharer.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Facebook"
+            >
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+      /* ================================================
+         PAGE LOADER
+      ================================================ */
+
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("pageLoader");
+
+        setTimeout(function () {
+          loader.classList.add("hide");
+        }, 450);
+      });
+
+      /* ================================================
+         MOBILE NAVIGATION
+      ================================================ */
+
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuBtn.addEventListener("click", function () {
+        const isOpen = menuBtn.classList.toggle("open");
+
+        mobileMenu.classList.toggle("open");
+
+        menuBtn.setAttribute("aria-expanded", isOpen);
+      });
+
+      /* ================================================
+         CLOSE MOBILE MENU AFTER CLICK
+      ================================================ */
+
+      const mobileLinks = document.querySelectorAll(".mobile-menu a");
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          menuBtn.classList.remove("open");
+
+          mobileMenu.classList.remove("open");
+
+          menuBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      /* ================================================
+         CLOSE MENU WHEN CLICKING OUTSIDE
+      ================================================ */
+
+      document.addEventListener("click", function (event) {
+        const clickedInsideMenu = mobileMenu.contains(event.target);
+
+        const clickedButton = menuBtn.contains(event.target);
+
+        if (
+          !clickedInsideMenu &&
+          !clickedButton &&
+          mobileMenu.classList.contains("open")
+        ) {
+          menuBtn.classList.remove("open");
+
+          mobileMenu.classList.remove("open");
+
+          menuBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      /* ================================================
+         REVEAL ANIMATION
+      ================================================ */
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const revealObserver = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+        },
+      );
+
+      revealElements.forEach(function (element) {
+        revealObserver.observe(element);
+      });
+
+      /* ================================================
+         ESC KEY CLOSE MENU
+      ================================================ */
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          menuBtn.classList.remove("open");
+
+          mobileMenu.classList.remove("open");
+
+          menuBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    </script>
+  </body>
+</html>
